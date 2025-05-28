@@ -1,570 +1,84 @@
-
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Chillpops - Naturally Crafted Joy in Every Bite!</title>
-    <meta name="description" content="Chillpops - Premium artisan popsicles made with natural ingredients. Vibrant flavors that bring joy to every bite!" />
-    <meta name="author" content="Chillpops" />
-    
-    <link href="https://fonts.googleapis.com/css2?family=Fredoka+One:wght@400&family=Nunito:wght@300;400;600;700;800&display=swap" rel="stylesheet">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>ChillPops - Delicious Frozen Treats</title>
     <link rel="stylesheet" href="styles.css">
-    
-    <meta property="og:title" content="Chillpops - Naturally Crafted Joy in Every Bite!" />
-    <meta property="og:description" content="Premium artisan popsicles made with natural ingredients" />
-    <meta property="og:type" content="website" />
-  </head>
-
-  <body>
-    <!-- Falling Drips Animation Container -->
-    <div class="drips-container" id="dripsContainer"></div>
-    
-    <!-- Music Toggle -->
-    <div class="music-toggle" id="musicToggle">
-      <div class="music-icon">🎵</div>
-      <audio id="backgroundMusic" loop>
-        <source src="data:audio/wav;base64,UklGRnoGAABXQVZFZm10IBAAAAABAAEAQB8AAEAfAAABAAgAZGF0YQoGAACBhYqFbF1fdJivrJBhNjVgodDbq2EcBj+a2/LDciUFLIHO8tiJNwgZaLvt559NEAxQp+PwtmMcBjiR1/LMeSwFJHfH8N2QQAoUXrTp66hVFApGn+DyvmMwC0Ggz/LHeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmMwC0Ggz/LHeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmMwC0Ggz/LHeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmMwC0Ggz/LHeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmMwC0Ggz/LHeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmMwC0Ggz/LHeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmMwC0Ggz/LHeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmMwC0Ggz/LHeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmMwC0Ggz/LHeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmMwC0Ggz/LHeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmMwC0Ggz/LHeSsFJHfH8N2QQAoUXrTp66hVFApGn+DyvmMwC0Ggz/LHeSs=" type="audio/wav">
-      </audio>
-    </div>
-
-    <!-- Navigation -->
-    <nav class="navbar" id="navbar">
-      <div class="nav-container">
-        <div class="nav-logo">
-          <div class="logo-mascot">🍭</div>
-          <span class="logo-text">Chillpops</span>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="navbar-container">
+            <div class="logo">
+                <a href="#">
+                    <img src="images/logo.png" alt="ChillPops Logo" class="logo-img">
+                    <span class="logo-text">chill<span class="pop">POPS</span></span>
+                </a>
+            </div>
+            
+            <ul class="nav-menu">
+                <li class="nav-item"><a href="#" class="nav-link active">Home</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Flavors</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Franchise</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">About Us</a></li>
+                <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+            </ul>
+            
+            <div class="hamburger">
+                <span class="bar"></span>
+                <span class="bar"></span>
+                <span class="bar"></span>
+            </div>
         </div>
-        <ul class="nav-menu" id="navMenu">
-          <li><a href="#home" class="nav-link">Home</a></li>
-          <li><a href="#about" class="nav-link">About</a></li>
-          <li><a href="#flavors" class="nav-link">Flavors</a></li>
-          <li><a href="#gallery" class="nav-link">Gallery</a></li>
-          <li><a href="#franchise" class="nav-link">Franchise</a></li>
-          <li><a href="#contact" class="nav-link">Contact</a></li>
-        </ul>
-        <div class="hamburger" id="hamburger">
-          <span></span>
-          <span></span>
-          <span></span>
-        </div>
-      </div>
     </nav>
-
-    <!-- Hero Section -->
-    <section id="home" class="hero">
-      <div class="falling-popsicles" id="fallingPopsicles"></div>
-      
-      <div class="hero-container">
-        <div class="hero-content">
-          <div class="mascot-greeting">
-            <div class="chilly-mascot">🍭</div>
-            <div class="speech-bubble">Hi! I'm Chilly!</div>
-          </div>
-          
-          <h1 class="hero-title">
-            <span class="title-line">Naturally Crafted</span>
-            <span class="title-line gradient-text">Joy in Every Bite!</span>
-          </h1>
-          
-          <p class="hero-subtitle">
-            Premium artisan popsicles made with love, natural ingredients, and a splash of summer magic
-          </p>
-          
-          <div class="hero-buttons">
-            <button class="btn btn-primary" onclick="scrollToSection('flavors')">
-              <span>See Flavors</span>
-              <div class="btn-sparkle"></div>
-            </button>
-            <button class="btn btn-secondary" onclick="scrollToSection('franchise')">
-              <span>Order Now</span>
-            </button>
-          </div>
-        </div>
-        
-        <div class="hero-visual">
-          <div class="main-popsicle-container">
-            <div class="main-popsicle rainbow-pop">
-              <div class="popsicle-body"></div>
-              <div class="popsicle-stick"></div>
-              <div class="popsicle-glow"></div>
-            </div>
-            <div class="floating-icons">
-              <div class="icon-item">🌱</div>
-              <div class="icon-item">❄️</div>
-              <div class="icon-item">🍓</div>
-              <div class="icon-item">🥭</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- About Section -->
-    <section id="about" class="about-section">
-      <div class="section-container">
-        <div class="section-header fade-in-element">
-          <h2 class="section-title">
-            <svg class="title-underline" viewBox="0 0 200 20">
-              <path d="M10,15 Q100,5 190,15" stroke="#ff6b9d" stroke-width="3" fill="none"/>
-            </svg>
-            Our Sweet Story
-          </h2>
-          <p class="section-subtitle">Where natural meets magical</p>
-        </div>
-        
-        <div class="about-content">
-          <div class="about-text fade-in-element">
-            <div class="story-card">
-              <div class="story-icon">🌿</div>
-              <h3>Natural Ingredients</h3>
-              <p>We source only the finest organic fruits and natural sweeteners, ensuring every popsicle is a guilt-free indulgence.</p>
-            </div>
-            
-            <div class="story-card">
-              <div class="story-icon">👨‍🍳</div>
-              <h3>Handcrafted with Love</h3>
-              <p>Each popsicle is carefully crafted by our artisan team, bringing you unique flavors that dance on your taste buds.</p>
-            </div>
-            
-            <div class="story-card">
-              <div class="story-icon">🌍</div>
-              <h3>Eco-Friendly</h3>
-              <p>Our biodegradable packaging and sustainable practices ensure we care for your health and our planet.</p>
-            </div>
-          </div>
-          
-          <div class="about-visual fade-in-element">
-            <div class="illustration-container">
-              <div class="ingredient-circle">
-                <div class="ingredient strawberry">🍓</div>
-                <div class="ingredient mango">🥭</div>
-                <div class="ingredient mint">🌿</div>
-                <div class="ingredient coconut">🥥</div>
-              </div>
-              <div class="chilly-chef">👨‍🍳</div>
-            </div>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Flavors Section -->
-    <section id="flavors" class="flavors-section">
-      <div class="section-header fade-in-element">
-        <h2 class="section-title">
-          <svg class="title-underline" viewBox="0 0 200 20">
-            <path d="M10,15 Q100,5 190,15" stroke="#4ecdc4" stroke-width="3" fill="none"/>
-          </svg>
-          Flavor Paradise
-        </h2>
-        <p class="section-subtitle">Scroll through our delicious collection</p>
-      </div>
-      
-      <div class="flavors-container">
-        <button class="scroll-btn scroll-left" id="scrollLeft">‹</button>
-        
-        <div class="flavors-scroll-wrapper">
-          <div class="flavors-scroll" id="flavorsScroll">
-            <div class="flavor-card" data-flavor="mango-tango">
-              <div class="flavor-popsicle mango-gradient">
-                <div class="popsicle-shine"></div>
-              </div>
-              <div class="flavor-info">
-                <h3>Mango Tango</h3>
-                <p>Tropical mango with a hint of chili</p>
-                <div class="flavor-badges">
-                  <span class="badge vegan">🌱 Vegan</span>
-                  <span class="badge gluten-free">🌾 Gluten Free</span>
+    
+    <div class="hero">
+        <div class="hero-container">
+            <div class="hero-left">
+                <div class="hero-text-content">
+                    <div class="hero-badge">Premium Quality</div>
+                    <h1 class="hero-heading">Taste the <span>Frozen Magic</span></h1>
+                    <p class="hero-description">Our handcrafted popsicles are made with 100% natural ingredients, bringing you the perfect blend of flavor and refreshment.</p>
+                    <div class="hero-cta">
+                        <button class="primary-btn">Shop Now</button>
+                        <a href="#flavors" class="secondary-btn">View Flavors <i class="fas fa-arrow-right"></i></a>
+                    </div>
+                    <div class="hero-stats">
+                        <div class="stat-item">
+                            <span class="stat-number">20+</span>
+                            <span class="stat-text">Flavors</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">100%</span>
+                            <span class="stat-text">Natural</span>
+                        </div>
+                        <div class="stat-item">
+                            <span class="stat-number">50+</span>
+                            <span class="stat-text">Stores</span>
+                        </div>
+                    </div>
                 </div>
-              </div>
-              <div class="flavor-drip mango-drip"></div>
             </div>
             
-            <div class="flavor-card" data-flavor="strawberry-dream">
-              <div class="flavor-popsicle strawberry-gradient">
-                <div class="popsicle-shine"></div>
-              </div>
-              <div class="flavor-info">
-                <h3>Strawberry Dream</h3>
-                <p>Fresh strawberries with vanilla cream</p>
-                <div class="flavor-badges">
-                  <span class="badge dairy-free">🥛 Dairy Free</span>
-                  <span class="badge natural">🍓 All Natural</span>
+            <div class="hero-right">
+                <div class="hero-image-wrapper">
+                    <div class="hero-image">
+                        <!-- Replace logo.png with a proper popsicle image -->
+                        <img src="images/logo.png" alt="ChillPops Popsicles">
+                    </div>
+                    <div class="image-badge top">Handcrafted</div>
+                    <div class="image-badge bottom">No Artificial Flavors</div>
+                    <div class="dots-pattern"></div>
                 </div>
-              </div>
-              <div class="flavor-drip strawberry-drip"></div>
             </div>
-            
-            <div class="flavor-card" data-flavor="minty-melon">
-              <div class="flavor-popsicle mint-gradient">
-                <div class="popsicle-shine"></div>
-              </div>
-              <div class="flavor-info">
-                <h3>Minty Melon</h3>
-                <p>Refreshing watermelon with mint</p>
-                <div class="flavor-badges">
-                  <span class="badge vegan">🌱 Vegan</span>
-                  <span class="badge low-cal">💪 Low Cal</span>
-                </div>
-              </div>
-              <div class="flavor-drip mint-drip"></div>
-            </div>
-            
-            <div class="flavor-card" data-flavor="coconut-bliss">
-              <div class="flavor-popsicle coconut-gradient">
-                <div class="popsicle-shine"></div>
-              </div>
-              <div class="flavor-info">
-                <h3>Coconut Bliss</h3>
-                <p>Creamy coconut with lime zest</p>
-                <div class="flavor-badges">
-                  <span class="badge tropical">🏝️ Tropical</span>
-                  <span class="badge creamy">🥥 Creamy</span>
-                </div>
-              </div>
-              <div class="flavor-drip coconut-drip"></div>
-            </div>
-            
-            <div class="flavor-card" data-flavor="berry-burst">
-              <div class="flavor-popsicle berry-gradient">
-                <div class="popsicle-shine"></div>
-              </div>
-              <div class="flavor-info">
-                <h3>Berry Burst</h3>
-                <p>Mixed berries explosion</p>
-                <div class="flavor-badges">
-                  <span class="badge antioxidant">💜 Antioxidant</span>
-                  <span class="badge natural">🫐 All Natural</span>
-                </div>
-              </div>
-              <div class="flavor-drip berry-drip"></div>
-            </div>
-            
-            <div class="flavor-card" data-flavor="citrus-zing">
-              <div class="flavor-popsicle citrus-gradient">
-                <div class="popsicle-shine"></div>
-              </div>
-              <div class="flavor-info">
-                <h3>Citrus Zing</h3>
-                <p>Orange, lemon & grapefruit blend</p>
-                <div class="flavor-badges">
-                  <span class="badge vitamin-c">🍊 Vitamin C</span>
-                  <span class="badge energizing">⚡ Energizing</span>
-                </div>
-              </div>
-              <div class="flavor-drip citrus-drip"></div>
-            </div>
-          </div>
         </div>
         
-        <button class="scroll-btn scroll-right" id="scrollRight">›</button>
-      </div>
-    </section>
-
-    <!-- Gallery Section -->
-    <section id="gallery" class="gallery-section">
-      <div class="section-header fade-in-element">
-        <h2 class="section-title">
-          <svg class="title-underline" viewBox="0 0 200 20">
-            <path d="M10,15 Q100,5 190,15" stroke="#ffe66d" stroke-width="3" fill="none"/>
-          </svg>
-          Sweet Moments Gallery
-        </h2>
-        <p class="section-subtitle">Capturing the joy of Chillpops</p>
-      </div>
-      
-      <div class="gallery-filters fade-in-element">
-        <button class="filter-btn active" data-filter="all">All</button>
-        <button class="filter-btn" data-filter="fruit-based">Fruit Based</button>
-        <button class="filter-btn" data-filter="creamy">Creamy</button>
-        <button class="filter-btn" data-filter="limited">Limited Edition</button>
-      </div>
-      
-      <div class="gallery-grid" id="galleryGrid">
-        <div class="gallery-item" data-category="fruit-based">
-          <div class="gallery-image tropical-paradise"></div>
-          <div class="gallery-overlay">
-            <h3>Tropical Paradise</h3>
-            <p>Fresh mango and pineapple</p>
-            <div class="view-icon">👁️</div>
-          </div>
-        </div>
-        
-        <div class="gallery-item" data-category="creamy">
-          <div class="gallery-image vanilla-dreams"></div>
-          <div class="gallery-overlay">
-            <h3>Vanilla Dreams</h3>
-            <p>Rich vanilla bean cream</p>
-            <div class="view-icon">👁️</div>
-          </div>
-        </div>
-        
-        <div class="gallery-item" data-category="fruit-based">
-          <div class="gallery-image berry-medley"></div>
-          <div class="gallery-overlay">
-            <h3>Berry Medley</h3>
-            <p>Mixed berry explosion</p>
-            <div class="view-icon">👁️</div>
-          </div>
-        </div>
-        
-        <div class="gallery-item" data-category="limited">
-          <div class="gallery-image golden-sunset"></div>
-          <div class="gallery-overlay">
-            <h3>Golden Sunset</h3>
-            <p>Limited edition peach & gold</p>
-            <div class="view-icon">👁️</div>
-          </div>
-        </div>
-        
-        <div class="gallery-item" data-category="creamy">
-          <div class="gallery-image chocolate-swirl"></div>
-          <div class="gallery-overlay">
-            <h3>Chocolate Swirl</h3>
-            <p>Dark chocolate cream</p>
-            <div class="view-icon">👁️</div>
-          </div>
-        </div>
-        
-        <div class="gallery-item" data-category="fruit-based">
-          <div class="gallery-image citrus-burst"></div>
-          <div class="gallery-overlay">
-            <h3>Citrus Burst</h3>
-            <p>Zesty orange & lemon</p>
-            <div class="view-icon">👁️</div>
-          </div>
-        </div>
-      </div>
-      
-      <!-- Lightbox -->
-      <div class="lightbox" id="lightbox">
-        <div class="lightbox-content">
-          <span class="lightbox-close">&times;</span>
-          <img class="lightbox-image" id="lightboxImage" src="" alt="">
-          <div class="lightbox-info">
-            <h3 id="lightboxTitle"></h3>
-            <p id="lightboxDescription"></p>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Franchise Section -->
-    <section id="franchise" class="franchise-section">
-      <div class="section-container">
-        <div class="section-header fade-in-element">
-          <h2 class="section-title">
-            <svg class="title-underline" viewBox="0 0 200 20">
-              <path d="M10,15 Q100,5 190,15" stroke="#ff6b9d" stroke-width="3" fill="none"/>
-            </svg>
-            Join the Chillpops Family
-          </h2>
-          <p class="section-subtitle">Start your frozen paradise journey</p>
-        </div>
-        
-        <div class="franchise-content">
-          <div class="franchise-benefits fade-in-element">
-            <div class="benefit-card">
-              <div class="benefit-icon">💰</div>
-              <h3>Low Investment</h3>
-              <p>Start with minimal capital and get maximum support from our experienced team</p>
-            </div>
-            
-            <div class="benefit-card">
-              <div class="benefit-icon">📈</div>
-              <h3>Proven Success</h3>
-              <p>Join our growing network of 200+ successful franchise partners worldwide</p>
-            </div>
-            
-            <div class="benefit-card">
-              <div class="benefit-icon">🎓</div>
-              <h3>Complete Training</h3>
-              <p>Comprehensive training program covering operations, marketing, and customer service</p>
-            </div>
-          </div>
-          
-          <div class="testimonials-slider fade-in-element">
-            <h3>Happy Franchise Partners</h3>
-            <div class="testimonial-container" id="testimonialContainer">
-              <div class="testimonial active">
-                <div class="testimonial-avatar">👨‍💼</div>
-                <p>"Joining Chillpops was the best decision ever! The support is amazing and profits are sweet!"</p>
-                <cite>- Mike Johnson, California</cite>
-              </div>
-              
-              <div class="testimonial">
-                <div class="testimonial-avatar">👩‍💼</div>
-                <p>"The training program was fantastic. Now I'm running 3 successful Chillpops locations!"</p>
-                <cite>- Sarah Chen, New York</cite>
-              </div>
-              
-              <div class="testimonial">
-                <div class="testimonial-avatar">👨‍💼</div>
-                <p>"From day one, the Chillpops team guided me to success. Highly recommend!"</p>
-                <cite>- Carlos Rodriguez, Texas</cite>
-              </div>
-            </div>
-            
-            <div class="testimonial-dots">
-              <span class="dot active" data-slide="0"></span>
-              <span class="dot" data-slide="1"></span>
-              <span class="dot" data-slide="2"></span>
-            </div>
-          </div>
-          
-          <div class="franchise-form fade-in-element">
-            <h3>Become a Partner Today!</h3>
-            <form id="franchiseForm">
-              <div class="form-row">
-                <input type="text" placeholder="Full Name" required>
-                <input type="email" placeholder="Email Address" required>
-              </div>
-              <div class="form-row">
-                <input type="tel" placeholder="Phone Number" required>
-                <input type="text" placeholder="City" required>
-              </div>
-              <textarea placeholder="Tell us about your business experience" rows="4"></textarea>
-              <button type="submit" class="btn btn-franchise">
-                <span>Start My Journey</span>
-                <div class="btn-sparkle"></div>
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Contact Section -->
-    <section id="contact" class="contact-section">
-      <div class="section-container">
-        <div class="section-header fade-in-element">
-          <h2 class="section-title">
-            <svg class="title-underline" viewBox="0 0 200 20">
-              <path d="M10,15 Q100,5 190,15" stroke="#4ecdc4" stroke-width="3" fill="none"/>
-            </svg>
-            Get in Touch
-          </h2>
-          <p class="section-subtitle">We'd love to hear from you!</p>
-        </div>
-        
-        <div class="contact-content">
-          <div class="contact-info fade-in-element">
-            <div class="contact-card">
-              <div class="contact-icon">📧</div>
-              <h3>Email Us</h3>
-              <p>hello@chillpops.com</p>
-            </div>
-            
-            <div class="contact-card">
-              <div class="contact-icon">📞</div>
-              <h3>Call Us</h3>
-              <p>+1 (555) CHILL-POP</p>
-            </div>
-            
-            <div class="contact-card">
-              <div class="contact-icon">📍</div>
-              <h3>Visit Us</h3>
-              <p>123 Frozen Lane, Ice City, IC 12345</p>
-            </div>
-            
-            <div class="contact-card">
-              <div class="contact-icon">📱</div>
-              <h3>Follow Us</h3>
-              <div class="social-links">
-                <a href="#" class="social-link">Instagram</a>
-                <a href="#" class="social-link">TikTok</a>
-                <a href="#" class="social-link">Facebook</a>
-              </div>
-            </div>
-          </div>
-          
-          <div class="map-container fade-in-element">
-            <div class="map-placeholder">
-              <div class="map-icon">🗺️</div>
-              <h3>Find Our Factory</h3>
-              <p>Visit us to see how the magic happens!</p>
-              <button class="btn btn-secondary">Get Directions</button>
-            </div>
-          </div>
-        </div>
-        
-        <div class="newsletter-signup fade-in-element">
-          <div class="newsletter-content">
-            <h3>Stay Cool with Updates!</h3>
-            <p>Get the latest flavors, offers, and sweet news delivered to your inbox</p>
-            <form class="newsletter-form" id="newsletterForm">
-              <input type="email" placeholder="Enter your email address" required>
-              <button type="submit" class="btn btn-primary">
-                <span>Subscribe</span>
-              </button>
-            </form>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Footer -->
-    <footer class="footer">
-      <div class="footer-container">
-        <div class="footer-content">
-          <div class="footer-brand">
-            <div class="footer-logo">
-              <div class="logo-mascot">🍭</div>
-              <span class="logo-text">Chillpops</span>
-            </div>
-            <p>Naturally crafted joy in every bite!</p>
-            <div class="footer-mascots">
-              <div class="dancing-popsicle">🍭</div>
-              <div class="dancing-popsicle">🍡</div>
-              <div class="dancing-popsicle">🧊</div>
-            </div>
-          </div>
-          
-          <div class="footer-links">
-            <div class="footer-column">
-              <h4>Products</h4>
-              <ul>
-                <li><a href="#flavors">Our Flavors</a></li>
-                <li><a href="#gallery">Gallery</a></li>
-                <li><a href="#">Nutritional Info</a></li>
-                <li><a href="#">Seasonal Specials</a></li>
-              </ul>
-            </div>
-            
-            <div class="footer-column">
-              <h4>Business</h4>
-              <ul>
-                <li><a href="#franchise">Franchise</a></li>
-                <li><a href="#">Wholesale</a></li>
-                <li><a href="#">Partnership</a></li>
-                <li><a href="#">Careers</a></li>
-              </ul>
-            </div>
-            
-            <div class="footer-column">
-              <h4>Support</h4>
-              <ul>
-                <li><a href="#contact">Contact Us</a></li>
-                <li><a href="#">FAQ</a></li>
-                <li><a href="#">Shipping Info</a></li>
-                <li><a href="#">Returns</a></li>
-              </ul>
-            </div>
-          </div>
-        </div>
-        
-        <div class="footer-bottom">
-          <p>&copy; 2024 Chillpops. All rights reserved. Made with ❄️ and 💖</p>
-          <div class="footer-badges">
-            <span class="badge">🌱 100% Natural</span>
-            <span class="badge">🌍 Eco-Friendly</span>
-            <span class="badge">❄️ Always Fresh</span>
-          </div>
-        </div>
-      </div>
-    </footer>
-
+        <div class="shape shape-1"></div>
+        <div class="shape shape-2"></div>
+    </div>
+    
     <script src="script.js"></script>
-  </body>
+</body>
 </html>
