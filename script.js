@@ -75,20 +75,20 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Magnetic hover effect for nav items
+    // Remove the magnetic hover effect and replace with cleaner animations
     navItems.forEach(item => {
-        item.addEventListener('mousemove', function(e) {
-            const link = item.querySelector('.nav-link');
-            const rect = item.getBoundingClientRect();
-            const x = e.clientX - rect.left;
-            const y = e.clientY - rect.top;
-            
-            link.style.transform = `translate(${(x - rect.width / 2) / 10}px, ${(y - rect.height / 2) / 10}px)`;
+        const link = item.querySelector('.nav-link');
+        
+        // Add subtle underline animation instead of magnetic effect
+        item.addEventListener('mouseenter', function() {
+            link.style.transition = 'all 0.3s ease';
+            link.style.transform = 'translateY(-2px)';
+            link.style.textShadow = '0 2px 10px rgba(255, 255, 255, 0.3)';
         });
         
         item.addEventListener('mouseleave', function() {
-            const link = item.querySelector('.nav-link');
-            link.style.transform = 'translate(0, 0)';
+            link.style.transform = 'translateY(0)';
+            link.style.textShadow = 'none';
         });
     });
 
@@ -106,7 +106,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Add smooth scrolling for anchor links
+    // Add smooth scrolling for anchor links with simpler active state
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
             e.preventDefault();
@@ -119,8 +119,8 @@ document.addEventListener('DOMContentLoaded', function() {
             if (targetId.startsWith('#')) {
                 const targetElement = document.querySelector(targetId);
                 if (targetElement) {
-                    // Create a confetti burst effect when clicking menu items
-                    createConfettiBurst(e.clientX, e.clientY);
+                    // Remove confetti and replace with simple highlight effect
+                    addClickEffect(this);
                     
                     targetElement.scrollIntoView({
                         behavior: 'smooth',
@@ -131,58 +131,40 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
-    // Create confetti burst function
-    function createConfettiBurst(x, y) {
-        const confettiCount = 20;
-        const colors = ['#fff', '#ff9eb3', '#ffcad4'];
+    // Add a simple pulse highlight effect when clicking nav links
+    function addClickEffect(element) {
+        // Create and append a pulse effect element
+        const pulseEffect = document.createElement('span');
+        pulseEffect.className = 'nav-pulse';
+        element.appendChild(pulseEffect);
         
-        for (let i = 0; i < confettiCount; i++) {
-            const confetti = document.createElement('div');
-            confetti.className = 'confetti';
-            
-            const size = Math.random() * 8 + 4;
-            
-            confetti.style.width = `${size}px`;
-            confetti.style.height = `${size}px`;
-            confetti.style.position = 'fixed';
-            confetti.style.zIndex = '9999';
-            confetti.style.left = `${x}px`;
-            confetti.style.top = `${y}px`;
-            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
-            confetti.style.borderRadius = '50%';
-            confetti.style.pointerEvents = 'none';
-            
-            document.body.appendChild(confetti);
-            
-            const angle = Math.random() * Math.PI * 2;
-            const velocity = Math.random() * 5 + 5;
-            const vx = Math.cos(angle) * velocity;
-            const vy = Math.sin(angle) * velocity;
-            
-            // Animate the confetti
-            const startTime = Date.now();
-            
-            function animateConfetti() {
-                const elapsed = Date.now() - startTime;
-                const duration = 1000; // 1 second
-                
-                if (elapsed < duration) {
-                    const progress = elapsed / duration;
-                    const x = parseFloat(confetti.style.left) + vx;
-                    const y = parseFloat(confetti.style.top) + vy + progress * 20; // Add gravity
-                    const opacity = 1 - progress;
-                    
-                    confetti.style.left = `${x}px`;
-                    confetti.style.top = `${y}px`;
-                    confetti.style.opacity = opacity;
-                    
-                    requestAnimationFrame(animateConfetti);
-                } else {
-                    document.body.removeChild(confetti);
-                }
+        // Remove the effect after animation completes
+        setTimeout(() => {
+            if (pulseEffect.parentNode === element) {
+                element.removeChild(pulseEffect);
             }
-            
-            requestAnimationFrame(animateConfetti);
-        }
+        }, 700);
     }
+    
+    // Add active class to current section's link
+    window.addEventListener('scroll', function() {
+        let current = '';
+        const sections = document.querySelectorAll('section');
+        
+        sections.forEach(section => {
+            const sectionTop = section.offsetTop;
+            const sectionHeight = section.clientHeight;
+            
+            if (scrollY >= (sectionTop - 200)) {
+                current = section.getAttribute('id');
+            }
+        });
+
+        navLinks.forEach(link => {
+            link.classList.remove('active');
+            if (link.getAttribute('href') === `#${current}`) {
+                link.classList.add('active');
+            }
+        });
+    });
 });
