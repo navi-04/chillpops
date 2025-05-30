@@ -51,41 +51,6 @@ document.addEventListener('DOMContentLoaded', () => {
         }, 10);
     });
     
-    // Performance optimization for shapes and animations
-    const shapes = document.querySelectorAll('.shape');
-    let animationFrameId;
-    
-    // Use requestAnimationFrame for smoother animations
-    function animateOnScroll() {
-        const scrollPosition = window.scrollY;
-        
-        shapes.forEach(shape => {
-            const speed = shape.classList.contains('shape-1') ? 0.05 : 0.03;
-            shape.style.transform = `translateY(${scrollPosition * speed}px)`;
-        });
-        
-        animationFrameId = requestAnimationFrame(animateOnScroll);
-    }
-    
-    // Start animation
-    animationFrameId = requestAnimationFrame(animateOnScroll);
-    
-    // Stop animation when not in viewport
-    const heroSection = document.querySelector('.hero');
-    const observer = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                animationFrameId = requestAnimationFrame(animateOnScroll);
-            } else {
-                cancelAnimationFrame(animationFrameId);
-            }
-        });
-    }, {threshold: 0.1});
-    
-    if (heroSection) {
-        observer.observe(heroSection);
-    }
-    
     // Popsicle additional animation
     const popsicle = document.querySelector('.popsicle');
 
@@ -107,24 +72,6 @@ document.addEventListener('DOMContentLoaded', () => {
             console.log('CTA button clicked');
         });
     }
-
-    // Add parallax scrolling effect to hero section
-    window.addEventListener('scroll', () => {
-        const scrollPosition = window.scrollY;
-        
-        // Parallax for background shapes and elements
-        const shapes = document.querySelectorAll('.shape');
-        shapes.forEach(shape => {
-            const speed = shape.classList.contains('shape-1') ? 0.05 : 0.03;
-            shape.style.transform = `translateY(${scrollPosition * speed}px)`;
-        });
-        
-        // Fade out hero content gradually as user scrolls down
-        const heroContent = document.querySelector('.hero-text-content');
-        if (heroContent) {
-            heroContent.style.opacity = 1 - (scrollPosition * 0.003);
-        }
-    });
     
     // Animated counter for stats section
     const animateCounter = (element, target, duration) => {
@@ -249,4 +196,34 @@ document.addEventListener('DOMContentLoaded', () => {
             primaryBtn.style.transform = 'translate(0, 0)';
         });
     }
+    
+    // Smooth scrolling for navigation links
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function (e) {
+            e.preventDefault();
+            
+            const targetId = this.getAttribute('href');
+            if (targetId === '#') return;
+            
+            const targetElement = document.querySelector(targetId);
+            if (targetElement) {
+                const navbarHeight = document.querySelector('.navbar').offsetHeight;
+                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
+                
+                window.scrollTo({
+                    top: targetPosition,
+                    behavior: 'smooth'
+                });
+                
+                // Close mobile menu
+                const hamburger = document.querySelector('.hamburger');
+                const navMenu = document.querySelector('.nav-menu');
+                if (hamburger && navMenu) {
+                    hamburger.classList.remove('active');
+                    navMenu.classList.remove('active');
+                    document.body.classList.remove('menu-open');
+                }
+            }
+        });
+    });
 });
