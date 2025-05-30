@@ -1,229 +1,188 @@
-document.addEventListener('DOMContentLoaded', () => {
-    // Mobile Menu Toggle - Improved functionality
-    const hamburger = document.querySelector('.hamburger');
-    const navMenu = document.querySelector('.nav-menu');
+document.addEventListener('DOMContentLoaded', function() {
+    const navbar = document.querySelector('.navbar');
+    const navbarContainer = document.querySelector('.navbar-container');
+    const mobileToggle = document.querySelector('.navbar-toggle');
+    const navbarNav = document.querySelector('.navbar-nav');
+    const navLinks = document.querySelectorAll('.nav-link');
+    const navItems = document.querySelectorAll('.nav-item');
+
+    // Add unique floating effect to navbar
+    let prevScrollPos = window.pageYOffset;
     
-    if (hamburger && navMenu) {
-        hamburger.addEventListener('click', () => {
-            hamburger.classList.toggle('active');
-            navMenu.classList.toggle('active');
-            document.body.classList.toggle('menu-open'); // Prevent background scrolling when menu is open
-        });
+    window.addEventListener('scroll', function() {
+        // Floating effect on scroll
+        let currentScrollPos = window.pageYOffset;
         
-        // Close mobile menu when clicking outside
-        document.addEventListener('click', (e) => {
-            if (!hamburger.contains(e.target) && !navMenu.contains(e.target) && navMenu.classList.contains('active')) {
-                hamburger.classList.remove('active');
-                navMenu.classList.remove('active');
-                document.body.classList.remove('menu-open');
-            }
-        });
-    }
-
-    // Close mobile menu when clicking on a nav link
-    document.querySelectorAll('.nav-link').forEach(link => {
-        link.addEventListener('click', () => {
-            hamburger.classList.remove('active');
-            navMenu.classList.remove('active');
-            document.body.classList.remove('menu-open');
-        });
-    });
-
-    // Add scroll effect to navbar - Optimized for performance
-    let lastScrollTop = 0;
-    let scrollTimer;
-    
-    window.addEventListener('scroll', () => {
-        // Debounce the scroll event for better performance
-        if (scrollTimer) clearTimeout(scrollTimer);
-        
-        scrollTimer = setTimeout(() => {
-            const navbar = document.querySelector('.navbar');
-            const currentScrollTop = window.scrollY;
-            
-            if (currentScrollTop > 50) {
-                navbar.classList.add('scrolled');
-            } else {
-                navbar.classList.remove('scrolled');
-            }
-            
-            lastScrollTop = currentScrollTop;
-        }, 10);
-    });
-    
-    // Popsicle additional animation
-    const popsicle = document.querySelector('.popsicle');
-
-    // Add a slight rotation on mouse movement
-    document.addEventListener('mousemove', (e) => {
-        const mouseX = e.clientX / window.innerWidth - 0.5;
-        const mouseY = e.clientY / window.innerHeight - 0.5;
-
-        if (popsicle) {
-            popsicle.style.transform = `rotateX(${mouseY * 10}deg) rotateY(${mouseX * 10}deg)`;
+        if (currentScrollPos > 150) {
+            // When scrolled down, add floating effect
+            navbar.style.borderRadius = '0 0 20px 20px';
+            navbar.style.margin = '0 10px';
+            navbar.style.width = 'calc(100% - 20px)';
+            navbar.style.boxShadow = '0 10px 30px rgba(235, 45, 89, 0.25)';
+            navbar.style.backdropFilter = 'blur(5px)';
+            navbar.style.background = 'linear-gradient(135deg, rgba(235, 45, 89, 0.95) 0%, rgba(255, 92, 132, 0.95) 100%)';
+        } else {
+            // Reset to original state
+            navbar.style.borderRadius = '0';
+            navbar.style.margin = '0';
+            navbar.style.width = '100%';
+            navbar.style.boxShadow = '0 2px 15px rgba(235, 45, 89, 0.3)';
+            navbar.style.backdropFilter = 'none';
+            navbar.style.background = 'linear-gradient(135deg, #eb2d59 0%, #ff5c84 100%)';
         }
-    });
-
-    // Add interaction to the CTA button
-    const ctaButton = document.querySelector('.cta-button');
-    if (ctaButton) {
-        ctaButton.addEventListener('click', () => {
-            // You can add navigation or modal opening here
-            console.log('CTA button clicked');
-        });
-    }
-    
-    // Animated counter for stats section
-    const animateCounter = (element, target, duration) => {
-        const startTime = performance.now();
-        const startValue = 0;
         
-        const updateCounter = (currentTime) => {
-            const elapsedTime = currentTime - startTime;
-            const progress = Math.min(elapsedTime / duration, 1);
-            const value = Math.floor(progress * (target - startValue) + startValue);
-            
-            element.textContent = value + (element.dataset.suffix || '');
-            
-            if (progress < 1) {
-                requestAnimationFrame(updateCounter);
-            }
-        };
+        // Hide/show navbar on scroll
+        if (prevScrollPos > currentScrollPos) {
+            navbar.style.top = "0";
+        } else {
+            navbar.style.top = "-100px";
+        }
         
-        requestAnimationFrame(updateCounter);
-    };
-    
-    // Start counting when elements are in viewport
-    const statNumbers = document.querySelectorAll('.stat-number');
-    
-    const observerOptions = {
-        threshold: 0.5,
-        rootMargin: "0px"
-    };
-    
-    const statsObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                const target = parseInt(entry.target.dataset.value || entry.target.textContent);
-                animateCounter(entry.target, target, 2000);
-                statsObserver.unobserve(entry.target);
-            }
-        });
-    }, observerOptions);
-    
-    statNumbers.forEach(stat => {
-        stat.dataset.value = stat.textContent;
-        stat.textContent = '0';
-        statsObserver.observe(stat);
+        if (currentScrollPos < 50) {
+            navbar.style.top = "0"; // Always show at top of page
+        }
+        
+        prevScrollPos = currentScrollPos;
     });
     
-    // Add hover effect to image badges
-    const badges = document.querySelectorAll('.image-badge');
-    badges.forEach(badge => {
-        badge.addEventListener('mouseenter', () => {
-            badge.style.transform = badge.classList.contains('top') ? 
-                'rotate(5deg) scale(1.1)' : 'rotate(-5deg) scale(1.1)';
+    // Add shimmer effect to brand name
+    const brandName = document.querySelector('.navbar-brand h1');
+    brandName.innerHTML = brandName.textContent.split('').map(char => 
+        `<span class="shimmer-char">${char}</span>`
+    ).join('');
+    
+    const shimmerChars = document.querySelectorAll('.shimmer-char');
+    shimmerChars.forEach((char, index) => {
+        char.style.display = 'inline-block';
+        char.style.transition = 'transform 0.3s ease, color 0.3s ease';
+        char.style.transformOrigin = 'bottom center';
+        
+        // Random shimmer effect on hover
+        brandName.addEventListener('mouseover', function() {
+            setTimeout(() => {
+                char.style.color = '#fff';
+                char.style.textShadow = '0 0 10px rgba(255, 255, 255, 0.8)';
+                char.style.transform = 'translateY(-3px)';
+            }, 30 * index);
         });
         
-        badge.addEventListener('mouseleave', () => {
-            badge.style.transform = badge.classList.contains('top') ? 
-                'rotate(5deg)' : 'rotate(-5deg)';
+        brandName.addEventListener('mouseout', function() {
+            setTimeout(() => {
+                char.style.color = '';
+                char.style.textShadow = '';
+                char.style.transform = 'translateY(0)';
+            }, 30 * index);
         });
     });
     
-    // Add a reveal animation for sections as they come into view
-    const revealSections = document.querySelectorAll('.reveal-section');
-    
-    const revealObserver = new IntersectionObserver((entries) => {
-        entries.forEach(entry => {
-            if (entry.isIntersecting) {
-                entry.target.classList.add('revealed');
-                revealObserver.unobserve(entry.target);
-            }
-        });
-    }, {
-        threshold: 0.2
-    });
-    
-    revealSections.forEach(section => {
-        revealObserver.observe(section);
-    });
-    
-    // Interactive flavor picker
-    const flavorButtons = document.querySelectorAll('.flavor-btn');
-    const heroImage = document.querySelector('.hero-image img');
-    
-    if (flavorButtons.length && heroImage) {
-        flavorButtons.forEach(button => {
-            button.addEventListener('click', () => {
-                // Remove active class from all buttons
-                flavorButtons.forEach(btn => btn.classList.remove('active'));
-                
-                // Add active class to clicked button
-                button.classList.add('active');
-                
-                // Change image based on data attribute
-                const flavor = button.dataset.flavor;
-                heroImage.src = `images/popsicle-${flavor}.png`;
-                
-                // Add a small animation to the image
-                heroImage.style.transform = 'scale(0.95)';
-                setTimeout(() => {
-                    heroImage.style.transform = 'scale(1)';
-                }, 200);
-            });
-        });
-    }
-    
-    // Magnetic effect for primary button
-    const primaryBtn = document.querySelector('.primary-btn');
-    if (primaryBtn) {
-        primaryBtn.addEventListener('mousemove', (e) => {
-            const rect = primaryBtn.getBoundingClientRect();
+    // Magnetic hover effect for nav items
+    navItems.forEach(item => {
+        item.addEventListener('mousemove', function(e) {
+            const link = item.querySelector('.nav-link');
+            const rect = item.getBoundingClientRect();
             const x = e.clientX - rect.left;
             const y = e.clientY - rect.top;
             
-            const centerX = rect.width / 2;
-            const centerY = rect.height / 2;
-            
-            const moveX = (x - centerX) * 0.1;
-            const moveY = (y - centerY) * 0.1;
-            
-            primaryBtn.style.transform = `translate(${moveX}px, ${moveY}px)`;
+            link.style.transform = `translate(${(x - rect.width / 2) / 10}px, ${(y - rect.height / 2) / 10}px)`;
         });
         
-        primaryBtn.addEventListener('mouseleave', () => {
-            primaryBtn.style.transform = 'translate(0, 0)';
+        item.addEventListener('mouseleave', function() {
+            const link = item.querySelector('.nav-link');
+            link.style.transform = 'translate(0, 0)';
         });
-    }
-    
-    // Smooth scrolling for navigation links
-    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-        anchor.addEventListener('click', function (e) {
+    });
+
+    // Toggle mobile menu
+    mobileToggle.addEventListener('click', function() {
+        mobileToggle.classList.toggle('active');
+        navbarNav.classList.toggle('active');
+    });
+
+    // Close mobile menu when clicking on nav links
+    navLinks.forEach(link => {
+        link.addEventListener('click', function() {
+            mobileToggle.classList.remove('active');
+            navbarNav.classList.remove('active');
+        });
+    });
+
+    // Add smooth scrolling for anchor links
+    navLinks.forEach(link => {
+        link.addEventListener('click', function(e) {
             e.preventDefault();
-            
             const targetId = this.getAttribute('href');
-            if (targetId === '#') return;
             
-            const targetElement = document.querySelector(targetId);
-            if (targetElement) {
-                const navbarHeight = document.querySelector('.navbar').offsetHeight;
-                const targetPosition = targetElement.getBoundingClientRect().top + window.pageYOffset - navbarHeight;
-                
-                window.scrollTo({
-                    top: targetPosition,
-                    behavior: 'smooth'
-                });
-                
-                // Close mobile menu
-                const hamburger = document.querySelector('.hamburger');
-                const navMenu = document.querySelector('.nav-menu');
-                if (hamburger && navMenu) {
-                    hamburger.classList.remove('active');
-                    navMenu.classList.remove('active');
-                    document.body.classList.remove('menu-open');
+            // Add active class to clicked link
+            navLinks.forEach(navLink => navLink.classList.remove('active'));
+            this.classList.add('active');
+            
+            if (targetId.startsWith('#')) {
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    // Create a confetti burst effect when clicking menu items
+                    createConfettiBurst(e.clientX, e.clientY);
+                    
+                    targetElement.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
                 }
             }
         });
     });
+    
+    // Create confetti burst function
+    function createConfettiBurst(x, y) {
+        const confettiCount = 20;
+        const colors = ['#fff', '#ff9eb3', '#ffcad4'];
+        
+        for (let i = 0; i < confettiCount; i++) {
+            const confetti = document.createElement('div');
+            confetti.className = 'confetti';
+            
+            const size = Math.random() * 8 + 4;
+            
+            confetti.style.width = `${size}px`;
+            confetti.style.height = `${size}px`;
+            confetti.style.position = 'fixed';
+            confetti.style.zIndex = '9999';
+            confetti.style.left = `${x}px`;
+            confetti.style.top = `${y}px`;
+            confetti.style.backgroundColor = colors[Math.floor(Math.random() * colors.length)];
+            confetti.style.borderRadius = '50%';
+            confetti.style.pointerEvents = 'none';
+            
+            document.body.appendChild(confetti);
+            
+            const angle = Math.random() * Math.PI * 2;
+            const velocity = Math.random() * 5 + 5;
+            const vx = Math.cos(angle) * velocity;
+            const vy = Math.sin(angle) * velocity;
+            
+            // Animate the confetti
+            const startTime = Date.now();
+            
+            function animateConfetti() {
+                const elapsed = Date.now() - startTime;
+                const duration = 1000; // 1 second
+                
+                if (elapsed < duration) {
+                    const progress = elapsed / duration;
+                    const x = parseFloat(confetti.style.left) + vx;
+                    const y = parseFloat(confetti.style.top) + vy + progress * 20; // Add gravity
+                    const opacity = 1 - progress;
+                    
+                    confetti.style.left = `${x}px`;
+                    confetti.style.top = `${y}px`;
+                    confetti.style.opacity = opacity;
+                    
+                    requestAnimationFrame(animateConfetti);
+                } else {
+                    document.body.removeChild(confetti);
+                }
+            }
+            
+            requestAnimationFrame(animateConfetti);
+        }
+    }
 });

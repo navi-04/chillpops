@@ -3,190 +3,56 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChillPops - Delicious Frozen Treats</title>
+    <title>ChillPops</title>
     <link rel="stylesheet" href="styles.css">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
-    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
     <nav class="navbar">
         <div class="navbar-container">
-            <div class="logo">
-                <a href="#">
-                    <img src="images/logo.png" alt="ChillPops Logo" class="logo-img">
-                    <span class="logo-text">chill<span class="pop">POPS</span></span>
-                </a>
+            <div class="navbar-brand">
+                <h1>Ch!llPops</h1>
             </div>
-            
-            <ul class="nav-menu">
-                <li class="nav-item"><a href="#" class="nav-link active">Home</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Flavors</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Franchise</a></li>
+            <ul class="navbar-nav">
+                <li class="nav-item"><a href="#home" class="nav-link">Home</a></li>
                 <li class="nav-item"><a href="#about" class="nav-link">About</a></li>
-                <li class="nav-item"><a href="#" class="nav-link">Contact</a></li>
+                <li class="nav-item"><a href="#franchise" class="nav-link">Franchise</a></li>
+                <li class="nav-item"><a href="#flavour" class="nav-link">Flavour</a></li>
+                <li class="nav-item"><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
-            
-            <div class="hamburger">
+            <div class="navbar-toggle">
                 <span class="bar"></span>
                 <span class="bar"></span>
                 <span class="bar"></span>
             </div>
         </div>
     </nav>
-    
-    <div class="hero">
-        <div class="hero-container">
-            <div class="hero-left">
-                <div class="hero-text-content">
-                    <div class="hero-badge">Premium Quality</div>
-                    <h1 class="hero-heading">Taste the <span>Frozen Magic</span></h1>
-                    <p class="hero-description">Our handcrafted popsicles are made with 100% natural ingredients, bringing you the perfect blend of flavor and refreshment.</p>
-                    <div class="hero-cta">
-                        <button class="primary-btn">Shop Now</button>
-                        <a href="#flavors" class="secondary-btn">View Flavors <i class="fas fa-arrow-right"></i></a>
-                    </div>
-                    <div class="hero-stats">
-                        <div class="stat-item">
-                            <span class="stat-number">20+</span>
-                            <span class="stat-text">Flavors</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">100%</span>
-                            <span class="stat-text">Natural</span>
-                        </div>
-                        <div class="stat-item">
-                            <span class="stat-number">50+</span>
-                            <span class="stat-text">Stores</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="hero-right">
-                <div class="hero-image-wrapper">
-                    <div class="hero-image">
-                        <!-- Replace logo.png with a proper popsicle image -->
-                        <img src="images/logo.png" alt="ChillPops Popsicles">
-                    </div>
-                    <div class="image-badge top">Handcrafted</div>
-                    <div class="image-badge bottom">No Artificial Flavors</div>
-                    <div class="dots-pattern"></div>
-                </div>
-            </div>
-        </div>
-        
-        <div class="shape shape-1"></div>
-        <div class="shape shape-2"></div>
-    </div>
-    
-    <section id="about" class="about">
-        <div class="about-bg-elements">
-            <div class="floating-element element-1"></div>
-            <div class="floating-element element-2"></div>
-            <div class="floating-element element-3"></div>
-            <div class="mesh-gradient"></div>
-        </div>
-        
-        <div class="about-container">
-            <div class="about-header">
-                <div class="section-tag">
-                    <span class="tag-icon">✨</span>
-                    <span>Our Journey</span>
-                </div>
-                <h2 class="about-title">
-                    <span class="title-line">Crafting</span>
-                    <span class="title-line highlight">Sweet Memories</span>
-                    <span class="title-line">Since 2015</span>
-                </h2>
-            </div>
-            
-            <div class="about-content">
-                <div class="story-section">
-                    <div class="story-card main-story">
-                        <div class="card-header">
-                            <div class="story-icon">
-                                <i class="fas fa-ice-cream"></i>
-                            </div>
-                            <h3>Our Beginning</h3>
-                        </div>
-                        <p>What started as Emma's quest to find healthy treats for her children became a revolution in frozen desserts. From a single cart to nationwide presence, ChillPops represents pure passion crystallized.</p>
-                        <div class="story-accent"></div>
-                    </div>
-                    
-                    <div class="story-grid">
-                        <div class="story-card">
-                            <div class="card-number">01</div>
-                            <h4>Natural Ingredients</h4>
-                            <p>Every popsicle contains only the purest fruits, organic sweeteners, and real botanical extracts.</p>
-                            <div class="card-icon-small">🌱</div>
-                        </div>
-                        
-                        <div class="story-card">
-                            <div class="card-number">02</div>
-                            <h4>Artisan Crafted</h4>
-                            <p>Hand-poured in small batches by skilled artisans who understand the art of frozen perfection.</p>
-                            <div class="card-icon-small">👨‍🍳</div>
-                        </div>
-                        
-                        <div class="story-card">
-                            <div class="card-number">03</div>
-                            <h4>Planet Friendly</h4>
-                            <p>Committed to sustainable practices with biodegradable packaging and carbon-neutral operations.</p>
-                            <div class="card-icon-small">🌍</div>
-                        </div>
-                    </div>
-                </div>
-                
-                <div class="visual-section">
-                    <div class="image-stack">
-                        <div class="image-card primary">
-                            <img src="images/about-main.jpg" alt="ChillPops Artisans">
-                            <div class="image-overlay">
-                                <div class="overlay-content">
-                                    <span class="overlay-text">Est. 2015</span>
-                                </div>
-                            </div>
-                        </div>
-                        
-                        <div class="image-card secondary">
-                            <img src="images/about-process.jpg" alt="Crafting Process">
-                            <div class="quality-badge">
-                                <span>Premium Quality</span>
-                            </div>
-                        </div>
-                        
-                        <div class="stats-floating">
-                            <div class="stat-bubble">
-                                <span class="stat-num">50K+</span>
-                                <span class="stat-label">Happy Customers</span>
-                            </div>
-                            <div class="stat-bubble">
-                                <span class="stat-num">25</span>
-                                <span class="stat-label">Unique Flavors</span>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            
-            <div class="about-footer">
-                <div class="mission-statement">
-                    <blockquote>
-                        "Every ChillPop is a moment of pure joy, crafted with love and delivered with a smile. We're not just making frozen treats – we're creating sweet memories that last a lifetime."
-                    </blockquote>
-                    <cite>— Emma Rodriguez, Founder & Chief Happiness Officer</cite>
-                </div>
-                
-                <div class="cta-section">
-                    <a href="#" class="premium-btn">
-                        <span class="btn-text">Discover Our Story</span>
-                        <span class="btn-icon">→</span>
-                    </a>
-                </div>
-            </div>
-        </div>
+
+    <!-- Add content sections for better visual -->
+    <section id="home" class="section">
+        <h2>Welcome to ChillPops</h2>
+        <p>Your favorite ice cream destination</p>
     </section>
     
+    <section id="about" class="section">
+        <h2>About Us</h2>
+        <p>Learn more about ChillPops</p>
+    </section>
+    
+    <section id="franchise" class="section">
+        <h2>Franchise</h2>
+        <p>Join our franchise network</p>
+    </section>
+    
+    <section id="flavour" class="section">
+        <h2>Flavours</h2>
+        <p>Discover our amazing flavours</p>
+    </section>
+    
+    <section id="contact" class="section">
+        <h2>Contact</h2>
+        <p>Get in touch with us</p>
+    </section>
+
     <script src="script.js"></script>
 </body>
 </html>
