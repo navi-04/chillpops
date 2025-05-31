@@ -5,6 +5,12 @@ document.addEventListener('DOMContentLoaded', function() {
     const navbarNav = document.querySelector('.navbar-nav');
     const navLinks = document.querySelectorAll('.nav-link');
     const navItems = document.querySelectorAll('.nav-item');
+    const body = document.body;
+    
+    // Create menu overlay for mobile
+    const menuOverlay = document.createElement('div');
+    menuOverlay.className = 'menu-overlay';
+    body.appendChild(menuOverlay);
 
     // Add unique floating effect to navbar
     let prevScrollPos = window.pageYOffset;
@@ -92,20 +98,48 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Toggle mobile menu
+    // Toggle mobile menu with improved functionality
     mobileToggle.addEventListener('click', function() {
         mobileToggle.classList.toggle('active');
         navbarNav.classList.toggle('active');
+        menuOverlay.classList.toggle('active');
+        
+        // Lock scroll when menu is open
+        if (navbarNav.classList.contains('active')) {
+            body.style.overflow = 'hidden';
+        } else {
+            body.style.overflow = '';
+        }
     });
-
+    
+    // Close mobile menu when clicking on overlay
+    menuOverlay.addEventListener('click', function() {
+        mobileToggle.classList.remove('active');
+        navbarNav.classList.remove('active');
+        menuOverlay.classList.remove('active');
+        body.style.overflow = '';
+    });
+    
     // Close mobile menu when clicking on nav links
     navLinks.forEach(link => {
         link.addEventListener('click', function() {
             mobileToggle.classList.remove('active');
             navbarNav.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            body.style.overflow = '';
         });
     });
-
+    
+    // Close mobile menu when resizing to desktop
+    window.addEventListener('resize', function() {
+        if (window.innerWidth > 768 && navbarNav.classList.contains('active')) {
+            mobileToggle.classList.remove('active');
+            navbarNav.classList.remove('active');
+            menuOverlay.classList.remove('active');
+            body.style.overflow = '';
+        }
+    });
+    
     // Add smooth scrolling for anchor links with simpler active state
     navLinks.forEach(link => {
         link.addEventListener('click', function(e) {
