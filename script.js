@@ -201,4 +201,200 @@ document.addEventListener('DOMContentLoaded', function() {
             }
         });
     });
+    
+    // Franchise Section Scripts
+    document.addEventListener('DOMContentLoaded', function() {
+        // Mobile navigation toggle
+        const navbarToggle = document.querySelector('.navbar-toggle');
+        const navbarNav = document.querySelector('.navbar-nav');
+        
+        if (navbarToggle) {
+            navbarToggle.addEventListener('click', function() {
+                navbarNav.classList.toggle('active');
+                this.classList.toggle('active');
+            });
+        }
+
+        // Animation for franchise features on scroll
+        const franchiseFeatures = document.querySelectorAll('.franchise-section .feature');
+        
+        // Check if Intersection Observer is supported
+        if ('IntersectionObserver' in window) {
+            const featureObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        // Add a slight delay for small features to create a cascade effect
+                        if (entry.target.classList.contains('feature-small')) {
+                            setTimeout(() => {
+                                entry.target.classList.add('animated');
+                            }, 150 * Array.from(franchiseFeatures).indexOf(entry.target) % 3);
+                        } else {
+                            entry.target.classList.add('animated');
+                        }
+                        featureObserver.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            franchiseFeatures.forEach(feature => {
+                featureObserver.observe(feature);
+            });
+        }
+        
+        // Add stats counters to franchise section
+        const franchiseSection = document.querySelector('.franchise-section .about-text');
+        if (franchiseSection) {
+            // Create stats element
+            const statsHTML = `
+                <div class="franchise-stats">
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="50">0</span>
+                        <span class="stat-label">Locations</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="95">0</span>
+                        <span class="stat-label">Success Rate</span>
+                    </div>
+                    <div class="stat-item">
+                        <span class="stat-number" data-count="5000">0</span>
+                        <span class="stat-label">Daily Customers</span>
+                    </div>
+                </div>
+            `;
+            
+            // Insert after the first paragraph
+            const firstParagraph = franchiseSection.querySelector('p');
+            if (firstParagraph) {
+                firstParagraph.insertAdjacentHTML('afterend', statsHTML);
+            }
+            
+            // Animate counter when in view
+            const statsSection = document.querySelector('.franchise-stats');
+            if (statsSection && 'IntersectionObserver' in window) {
+                const statsObserver = new IntersectionObserver((entries) => {
+                    entries.forEach(entry => {
+                        if (entry.isIntersecting) {
+                            animateCounters();
+                            statsObserver.unobserve(entry.target);
+                        }
+                    });
+                }, { threshold: 0.5 });
+                
+                statsObserver.observe(statsSection);
+            }
+        }
+        
+        // Franchise brochure download handler
+        const brochureBtn = document.querySelector('.franchise-section .btn-secondary');
+        if (brochureBtn) {
+            brochureBtn.addEventListener('click', function(e) {
+                e.preventDefault();
+                alert('Thank you for your interest! The franchise brochure will begin downloading shortly.');
+                // In a real implementation, you would trigger the file download here
+                setTimeout(() => {
+                    window.location.href = 'brochure/chillpops_franchise_brochure.pdf';
+                }, 1000);
+            });
+        }
+    });
+
+    // Counter animation function
+    function animateCounters() {
+        const counters = document.querySelectorAll('.stat-number');
+        const speed = 200; // The lower the faster
+        
+        counters.forEach(counter => {
+            const target = +counter.getAttribute('data-count');
+            const increment = target / speed;
+            
+            let currentCount = 0;
+            const updateCount = () => {
+                currentCount += increment;
+                if (currentCount < target) {
+                    counter.innerText = Math.ceil(currentCount);
+                    setTimeout(updateCount, 1);
+                } else {
+                    counter.innerText = target;
+                }
+            };
+            
+            updateCount();
+        });
+    }
+    
+    // Add flavor section scroll animation
+    document.addEventListener('DOMContentLoaded', function() {
+        // Horizontal scroll indicator for flavor section
+        const flavourScroll = document.querySelector('.flavour-scroll');
+        if (flavourScroll) {
+            // Add drag scroll functionality for better mobile experience
+            let isDown = false;
+            let startX;
+            let scrollLeft;
+            
+            flavourScroll.addEventListener('mousedown', (e) => {
+                isDown = true;
+                flavourScroll.style.cursor = 'grabbing';
+                startX = e.pageX - flavourScroll.offsetLeft;
+                scrollLeft = flavourScroll.scrollLeft;
+            });
+            
+            flavourScroll.addEventListener('mouseleave', () => {
+                isDown = false;
+                flavourScroll.style.cursor = 'grab';
+            });
+            
+            flavourScroll.addEventListener('mouseup', () => {
+                isDown = false;
+                flavourScroll.style.cursor = 'grab';
+            });
+            
+            flavourScroll.addEventListener('mousemove', (e) => {
+                if (!isDown) return;
+                e.preventDefault();
+                const x = e.pageX - flavourScroll.offsetLeft;
+                const walk = (x - startX) * 2; // Scroll speed
+                flavourScroll.scrollLeft = scrollLeft - walk;
+            });
+            
+            // Set initial grab cursor
+            flavourScroll.style.cursor = 'grab';
+        }
+    });
+    
+    // Control flavor section background visibility
+    document.addEventListener('DOMContentLoaded', function() {
+        // Background visibility control
+        const flavourSection = document.querySelector('.flavour-section');
+        const flavourBackground = document.querySelector('.flavour-background');
+        
+        if (flavourSection && flavourBackground) {
+            // Function to check if flavor section is in viewport
+            function isInViewport(element) {
+                const rect = element.getBoundingClientRect();
+                return (
+                    rect.top < window.innerHeight &&
+                    rect.bottom > 0
+                );
+            }
+            
+            // Function to update flavor section background visibility
+            function updateFlavourBackground() {
+                if (isInViewport(flavourSection)) {
+                    flavourSection.classList.add('active');
+                } else {
+                    flavourSection.classList.remove('active');
+                }
+            }
+            
+            // Initial check
+            updateFlavourBackground();
+            
+            // Check on scroll
+            window.addEventListener('scroll', updateFlavourBackground);
+            
+            // Check on resize
+            window.addEventListener('resize', updateFlavourBackground);
+        }
+    });
 });
