@@ -397,4 +397,25 @@ document.addEventListener('DOMContentLoaded', function() {
             window.addEventListener('resize', updateFlavourBackground);
         }
     });
+    
+    // Fix for mobile horizontal scrolling in flavour section
+    document.addEventListener('DOMContentLoaded', function() {
+        const flavourScroll = document.querySelector('.flavour-scroll');
+        
+        if (flavourScroll) {
+            // Add visual indicator that content is scrollable
+            const scrollIndicator = document.createElement('div');
+            scrollIndicator.className = 'scroll-indicator';
+            scrollIndicator.innerHTML = '→';
+            flavourScroll.appendChild(scrollIndicator);
+            
+            // Auto scroll slightly to show there's more content
+            setTimeout(() => {
+                flavourScroll.scrollLeft = 40;
+                setTimeout(() => {
+                    flavourScroll.scrollLeft = 0;
+                }, 800);
+            }, 1500);
+        }
+    });
 });

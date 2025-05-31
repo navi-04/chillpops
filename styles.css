@@ -840,24 +840,23 @@ body {
     -webkit-overflow-scrolling: touch;
     padding: 1rem 0;
     width: calc(100% + 4rem); /* Ensure full width including margins */
+    
+    /* Hide scrollbar for all browsers while maintaining scroll functionality */
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer and Edge */
 }
 
+/* Hide webkit (Chrome, Safari, Opera) scrollbar */
 .flavour-scroll::-webkit-scrollbar {
-    height: 8px;
+    display: none;
+    height: 0;
 }
 
-.flavour-scroll::-webkit-scrollbar-track {
-    background: rgba(255, 255, 255, 0.1);
-    border-radius: 4px;
-}
-
-.flavour-scroll::-webkit-scrollbar-thumb {
-    background: rgba(255, 255, 255, 0.3);
-    border-radius: 4px;
-}
-
+/* Remove all other scrollbar styling since it's now hidden */
+.flavour-scroll::-webkit-scrollbar-track,
+.flavour-scroll::-webkit-scrollbar-thumb,
 .flavour-scroll::-webkit-scrollbar-thumb:hover {
-    background: rgba(255, 255, 255, 0.5);
+    display: none;
 }
 
 .flavour-items {
@@ -984,6 +983,32 @@ body {
     .flavour-image {
         height: 150px;
     }
+    
+    /* Improve horizontal scrolling on mobile */
+    .flavour-scroll {
+        -webkit-overflow-scrolling: touch;
+        scrollbar-width: none;
+        width: 100%;
+        margin: 3rem 0 0;
+        padding: 1rem 2rem;
+        position: relative;
+    }
+    
+    .flavour-items {
+        gap: 1.5rem;
+        width: max-content;
+        padding-bottom: 1rem; /* Add space for better touch area */
+    }
+    
+    /* Visual indicator that content is scrollable */
+    .flavour-section .section-subtitle:after {
+        content: '← Scroll to see more →';
+        display: block;
+        font-size: 0.8rem;
+        margin-top: 0.5rem;
+        color: rgba(255, 255, 255, 0.7);
+        font-style: italic;
+    }
 }
 
 /* Contact Section Styles */
@@ -1089,13 +1114,292 @@ body {
     margin: 0 10px;
 }
 
-/* Media queries for responsiveness */
-@media (max-width: 768px) {
-    .contact-content {
-        flex-direction: column;
+/* Enhanced Mobile Responsive Styling */
+@media (max-width: 1200px) {
+    .section-header h2 {
+        font-size: 2.4rem;
     }
     
-    .contact-info, .contact-form-container {
+    .hero-title {
+        font-size: 3rem;
+    }
+    
+    .hero-content {
+        padding: 2rem;
+    }
+    
+    .about-content, 
+    .franchise-section .about-content {
+        gap: 2.5rem;
+    }
+}
+
+@media (max-width: 992px) {
+    .section-header h2 {
+        font-size: 2.2rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1.1rem;
+    }
+    
+    .hero-title {
+        font-size: 2.5rem;
+    }
+    
+    .hero-description {
+        font-size: 1rem;
+    }
+    
+    .about-content, 
+    .franchise-section .about-content {
+        flex-direction: column;
+        gap: 3rem;
+    }
+    
+    .about-image, 
+    .about-text {
         width: 100%;
+        max-width: 600px;
+        margin: 0 auto;
+    }
+    
+    .about-features {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .feature {
+        flex: 1 0 calc(50% - 1rem);
+        min-width: 200px;
+    }
+}
+
+@media (max-width: 768px) {
+    .section {
+        padding: 80px 1.5rem 60px;
+    }
+    
+    .section-header h2 {
+        font-size: 2rem;
+    }
+    
+    .section-subtitle {
+        font-size: 1rem;
+    }
+    
+    .hero-container {
+        padding: 0 1.5rem;
+    }
+    
+    .hero-content {
+        padding: 1.5rem;
+    }
+    
+    .hero-title {
+        font-size: 2.2rem;
+        margin-bottom: 1rem;
+    }
+    
+    .hero-description {
+        font-size: 0.95rem;
+        margin-bottom: 1.5rem;
+    }
+    
+    .hero-cta {
+        flex-direction: column;
+        gap: 1rem;
+    }
+    
+    .btn {
+        width: 100%;
+        padding: 0.8rem 1.5rem;
+    }
+    
+    .about-section,
+    .franchise-section,
+    .flavour-section,
+    .contact-section {
+        padding: 60px 0;
+    }
+    
+    .about-features {
+        flex-direction: column;
+        gap: 1.5rem;
+    }
+    
+    .feature {
+        width: 100%;
+    }
+    
+    .franchise-section .feature-small {
+        width: 100%;
+        max-width: 280px;
+        margin: 0 auto 1rem auto;
+        padding: 0.75rem;
+        flex-direction: row;
+        text-align: left;
+        align-items: flex-start;
+    }
+    
+    /* Improve flavour section on mobile */
+    .flavour-item {
+        flex: 0 0 260px;
+    }
+    
+    .flavour-content h3 {
+        font-size: 1.1rem;
+    }
+    
+    .flavour-content p {
+        font-size: 0.85rem;
+    }
+    
+    /* Better contact section on mobile */
+    .contact-list li, .hours-list li {
+        display: block;
+        text-align: center;
+        margin-bottom: 12px;
+    }
+    
+    .social-links {
+        flex-wrap: wrap;
+        justify-content: center;
+    }
+    
+    .social-link {
+        flex: 1 0 auto;
+        min-width: 120px;
+        text-align: center;
+        margin-bottom: 10px;
+    }
+    
+    .contact-cta .btn {
+        display: block;
+        width: 100%;
+        margin: 10px 0;
+    }
+}
+
+@media (max-width: 576px) {
+    .navbar-brand h1 {
+        font-size: 1.8rem;
+    }
+    
+    .section-header h2 {
+        font-size: 1.8rem;
+    }
+    
+    .section-subtitle {
+        font-size: 0.9rem;
+    }
+    
+    .hero-content {
+        padding: 1.2rem;
+    }
+    
+    .hero-title {
+        font-size: 1.8rem;
+    }
+    
+    .hero-description {
+        font-size: 0.9rem;
+        margin-bottom: 1.2rem;
+    }
+    
+    .main-image {
+        max-width: 90%;
+    }
+    
+    .about-text h3,
+    .contact-details h3,
+    .contact-cta h3 {
+        font-size: 1.5rem;
+    }
+    
+    .about-text p,
+    .contact-cta p {
+        font-size: 0.9rem;
+    }
+    
+    .feature h4 {
+        font-size: 1.1rem;
+    }
+    
+    .feature p {
+        font-size: 0.85rem;
+    }
+    
+    .flavour-item {
+        flex: 0 0 220px;
+    }
+    
+    .flavour-image {
+        height: 140px;
+    }
+}
+
+/* Specific fixes for very small devices */
+@media (max-width: 375px) {
+    .navbar-brand h1 {
+        font-size: 1.6rem;
+    }
+    
+    .section {
+        padding: 60px 1rem 40px;
+    }
+    
+    .hero-title {
+        font-size: 1.6rem;
+    }
+    
+    .btn {
+        padding: 0.7rem 1.2rem;
+        font-size: 0.9rem;
+    }
+    
+    .flavour-item {
+        flex: 0 0 200px;
+    }
+    
+    .flavour-image {
+        height: 120px;
+    }
+}
+
+/* Navigation improvements for mobile */
+@media screen and (max-width: 768px) {
+    .navbar-nav {
+        width: 80%;
+        padding: 3rem 0;
+    }
+    
+    .nav-item {
+        width: 100%;
+        text-align: center;
+    }
+    
+    .nav-link {
+        display: block;
+        width: 100%;
+        padding: 1rem 0;
+        font-size: 1.1rem;
+    }
+    
+    .nav-link::before {
+        bottom: 5px;
+    }
+    
+    /* Hamburger animation */
+    .navbar-toggle.active .bar:nth-child(1) {
+        transform: rotate(-45deg) translate(-5px, 6px);
+    }
+    
+    .navbar-toggle.active .bar:nth-child(2) {
+        opacity: 0;
+    }
+    
+    .navbar-toggle.active .bar:nth-child(3) {
+        transform: rotate(45deg) translate(-5px, -6px);
     }
 }
