@@ -4,11 +4,26 @@
     box-sizing: border-box;
 }
 
+/* Hide scrollbar for all browsers while maintaining scroll functionality */
+html, body {
+    scrollbar-width: none; /* Firefox */
+    -ms-overflow-style: none; /* Internet Explorer and Edge */
+}
+
+/* Hide webkit (Chrome, Safari, Opera) scrollbar */
+html::-webkit-scrollbar, 
+body::-webkit-scrollbar {
+    display: none;
+    width: 0;
+    height: 0;
+}
+
 body {
     font-family: 'Poppins', 'Segoe UI', sans-serif;
     background-color: #fff;
     color: #333;
     line-height: 1.6;
+    overflow-y: scroll; /* Maintain scrolling functionality */
 }
 
 /* Navbar styling */
