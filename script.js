@@ -398,23 +398,132 @@ document.addEventListener('DOMContentLoaded', function() {
         }
     });
     
-    // Fix for mobile horizontal scrolling in flavour section
+    // Enhanced user experience for flavour section scrolling with FIXED mobile scrolling
     document.addEventListener('DOMContentLoaded', function() {
         const flavourScroll = document.querySelector('.flavour-scroll');
         
         if (flavourScroll) {
-            // Add visual indicator that content is scrollable
-            const scrollIndicator = document.createElement('div');
-            scrollIndicator.className = 'scroll-indicator';
-            scrollIndicator.innerHTML = '→';
-            flavourScroll.appendChild(scrollIndicator);
+            // Force horizontal scroll mode and prevent vertical scrolling interference
+            flavourScroll.style.overflowX = 'scroll';
+            flavourScroll.style.overflowY = 'hidden';
+            flavourScroll.style.webkitOverflowScrolling = 'touch'; // Smooth scrolling on iOS
             
-            // Auto scroll slightly to show there's more content
+            // Make sure content is actually scrollable by checking width
+            function updateScrollability() {
+                const isScrollable = flavourScroll.scrollWidth > flavourScroll.clientWidth;
+                
+                // If not scrollable, adjust the spacing to make it scrollable
+                if (!isScrollable && window.innerWidth < 768) {
+                    const items = flavourScroll.querySelectorAll('.flavour-item');
+                    if (items.length) {
+                        items.forEach(item => {
+                            item.style.minWidth = '85%';
+                            item.style.marginRight = '15%';
+                        });
+                    }
+                }
+            }
+            
+            // Run on load and resize
+            updateScrollability();
+            window.addEventListener('resize', updateScrollability);
+            
+            // Add visual indicators that content is scrollable (left and right arrows)
+            const leftIndicator = document.createElement('div');
+            leftIndicator.className = 'scroll-indicator left';
+            leftIndicator.innerHTML = '←';
+            leftIndicator.style.opacity = '0'; // Start hidden as we're at the beginning
+            
+            const rightIndicator = document.createElement('div');
+            rightIndicator.className = 'scroll-indicator right';
+            rightIndicator.innerHTML = '→';
+            
+            // Add mobile-specific indicator for full scrolling
+            const mobileScrollHint = document.createElement('div');
+            mobileScrollHint.className = 'mobile-scroll-hint';
+            mobileScrollHint.innerHTML = 'Swipe to see all flavours →';
+            mobileScrollHint.style.display = window.innerWidth < 768 ? 'block' : 'none';
+            
+            // Hide hint after the user starts scrolling
+            flavourScroll.addEventListener('scroll', function() {
+                if (flavourScroll.scrollLeft > 10) {
+                    mobileScrollHint.style.opacity = '0';
+                    setTimeout(() => {
+                        mobileScrollHint.style.display = 'none';
+                    }, 300);
+                }
+            });
+            
+            flavourScroll.appendChild(leftIndicator);
+            flavourScroll.appendChild(rightIndicator);
+            flavourScroll.appendChild(mobileScrollHint);
+            
+            // Implement touch-optimized scrolling for mobile
+            let touchStartX = 0;
+            let touchEndX = 0;
+            
+            flavourScroll.addEventListener('touchstart', function(e) {
+                touchStartX = e.changedTouches[0].screenX;
+            }, { passive: true });
+            
+            flavourScroll.addEventListener('touchend', function(e) {
+                touchEndX = e.changedTouches[0].screenX;
+                handleSwipe();
+            }, { passive: true });
+            
+            function handleSwipe() {
+                const distance = touchStartX - touchEndX;
+                
+                // If the user swiped with enough force, scroll a significant amount
+                if (Math.abs(distance) > 50) {
+                    flavourScroll.scrollBy({
+                        left: distance * 1.5,
+                        behavior: 'smooth'
+                    });
+                }
+            }
+            
+            // Make scrolling more reliable by adding scroll snapping
+            flavourScroll.style.scrollSnapType = 'x mandatory';
+            const flavourItems = flavourScroll.querySelectorAll('.flavour-item');
+            if (flavourItems.length) {
+                flavourItems.forEach(item => {
+                    item.style.scrollSnapAlign = 'start';
+                });
+            }
+            
+            // Ensure the scroll area is wide enough to scroll fully
+            const flavourScrollCheck = setInterval(() => {
+                if (flavourScroll.scrollWidth <= flavourScroll.clientWidth && flavourItems.length) {
+                    // Force more width to allow full scrolling
+                    const lastItem = flavourItems[flavourItems.length - 1];
+                    lastItem.style.marginRight = '30px';
+                    
+                    // Stop checking once fixed
+                    if (flavourScroll.scrollWidth > flavourScroll.clientWidth) {
+                        clearInterval(flavourScrollCheck);
+                    }
+                } else {
+                    clearInterval(flavourScrollCheck);
+                }
+            }, 500);
+            
+            // Initial auto scroll hint with improved animation for mobile awareness
             setTimeout(() => {
-                flavourScroll.scrollLeft = 40;
-                setTimeout(() => {
-                    flavourScroll.scrollLeft = 0;
-                }, 800);
+                // Only do auto-scroll hint if not already scrolled
+                if (flavourScroll.scrollLeft < 5) {
+                    flavourScroll.scrollBy({
+                        left: 120,
+                        behavior: 'smooth'
+                    });
+                    
+                    setTimeout(() => {
+                        flavourScroll.scrollBy({
+                            left: -120,
+                            behavior: 'smooth'
+                        });
+                    }, 800);
+                }
             }, 1500);
         }
     });
