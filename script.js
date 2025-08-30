@@ -1,3 +1,6 @@
+// Import data from data.js
+import { flavours, aboutFeatures, franchiseFeatures, franchiseStats, contactInfo } from './data.js';
+
 document.addEventListener('DOMContentLoaded', function() {
     const navbar = document.querySelector('.navbar');
     const navbarContainer = document.querySelector('.navbar-container');
@@ -14,6 +17,18 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Add unique floating effect to navbar
     let prevScrollPos = window.pageYOffset;
+    
+    // Populate the flavour section with data from data.js
+    populateFlavourSection();
+    
+    // Populate the about features
+    populateAboutFeatures();
+    
+    // Populate franchise features
+    populateFranchiseFeatures();
+    
+    // Populate contact information
+    populateContactInfo();
     
     window.addEventListener('scroll', function() {
         // Floating effect on scroll
@@ -202,6 +217,126 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
     
+    // Function to populate the flavour section with data from data.js
+    function populateFlavourSection() {
+        const flavourItems = document.querySelector('.flavour-items');
+        if (!flavourItems) return;
+        
+        // Clear existing content
+        flavourItems.innerHTML = '';
+        
+        // Generate HTML for each flavour
+        flavours.forEach(flavour => {
+            const flavourItem = document.createElement('div');
+            flavourItem.className = 'flavour-item';
+            
+            // Generate tags HTML
+            const tagsHTML = flavour.tags.map(tag => 
+                `<span class="tag">${tag}</span>`
+            ).join('');
+            
+            flavourItem.innerHTML = `
+                <div class="flavour-image">
+                    <img src="${flavour.image}" alt="${flavour.name} ChillPop">
+                </div>
+                <div class="flavour-content">
+                    <h3>${flavour.name}</h3>
+                    <p>${flavour.description}</p>
+                    <div class="flavour-tags">
+                        ${tagsHTML}
+                    </div>
+                </div>
+            `;
+            
+            flavourItems.appendChild(flavourItem);
+        });
+    }
+    
+    // Function to populate about features
+    function populateAboutFeatures() {
+        const aboutFeaturesContainer = document.querySelector('.about-section .about-features');
+        if (!aboutFeaturesContainer) return;
+        
+        // Clear existing content
+        aboutFeaturesContainer.innerHTML = '';
+        
+        // Generate HTML for each feature
+        aboutFeatures.forEach(feature => {
+            const featureElement = document.createElement('div');
+            featureElement.className = 'feature';
+            
+            featureElement.innerHTML = `
+                <div class="feature-icon">${feature.icon}</div>
+                <h4>${feature.title}</h4>
+                <p>${feature.description}</p>
+            `;
+            
+            aboutFeaturesContainer.appendChild(featureElement);
+        });
+    }
+    
+    // Function to populate franchise features
+    function populateFranchiseFeatures() {
+        const franchiseFeaturesContainer = document.querySelector('.franchise-section .about-features');
+        if (!franchiseFeaturesContainer) return;
+        
+        // Clear existing content
+        franchiseFeaturesContainer.innerHTML = '';
+        
+        // Generate HTML for each feature
+        franchiseFeatures.forEach(feature => {
+            const featureElement = document.createElement('div');
+            featureElement.className = 'feature feature-small';
+            
+            featureElement.innerHTML = `
+                <div class="feature-icon">${feature.icon}</div>
+                <div class="feature-text">
+                    <h4>${feature.title}</h4>
+                    <p>${feature.description}</p>
+                </div>
+            `;
+            
+            franchiseFeaturesContainer.appendChild(featureElement);
+        });
+    }
+    
+    // Function to populate contact information
+    function populateContactInfo() {
+        const contactList = document.querySelector('.contact-list');
+        const hoursList = document.querySelector('.hours-list');
+        const socialLinks = document.querySelector('.social-links');
+        
+        if (!contactList || !hoursList || !socialLinks) return;
+        
+        // Clear existing content
+        contactList.innerHTML = '';
+        hoursList.innerHTML = '';
+        socialLinks.innerHTML = '';
+        
+        // Add contact details
+        contactList.innerHTML = `
+            <li><i class="contact-icon">📍</i> ${contactInfo.address}</li>
+            <li><i class="contact-icon">📞</i> ${contactInfo.phone}</li>
+            <li><i class="contact-icon">✉️</i> ${contactInfo.email}</li>
+        `;
+        
+        // Add hours
+        contactInfo.hours.forEach(hour => {
+            const hourItem = document.createElement('li');
+            hourItem.innerHTML = `<span class="day">${hour.day}:</span> ${hour.time}`;
+            hoursList.appendChild(hourItem);
+        });
+        
+        // Add social links
+        contactInfo.social.forEach(social => {
+            const socialLink = document.createElement('a');
+            socialLink.href = social.url;
+            socialLink.className = 'social-link';
+            socialLink.textContent = social.platform;
+            socialLinks.appendChild(socialLink);
+        });
+    }
+    
     // Franchise Section Scripts
     document.addEventListener('DOMContentLoaded', function() {
         // Mobile navigation toggle
@@ -241,24 +376,18 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
         
-        // Add stats counters to franchise section
+        // Add stats counters to franchise section using data from data.js
         const franchiseSection = document.querySelector('.franchise-section .about-text');
         if (franchiseSection) {
-            // Create stats element
+            // Create stats element with data from franchiseStats
             const statsHTML = `
                 <div class="franchise-stats">
-                    <div class="stat-item">
-                        <span class="stat-number" data-count="50">0</span>
-                        <span class="stat-label">Locations</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number" data-count="95">0</span>
-                        <span class="stat-label">Success Rate</span>
-                    </div>
-                    <div class="stat-item">
-                        <span class="stat-number" data-count="5000">0</span>
-                        <span class="stat-label">Daily Customers</span>
-                    </div>
+                    ${franchiseStats.map(stat => `
+                        <div class="stat-item">
+                            <span class="stat-number" data-count="${stat.count}">0</span>
+                            <span class="stat-label">${stat.label}</span>
+                        </div>
+                    `).join('')}
                 </div>
             `;
             
