@@ -527,4 +527,47 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 1500);
         }
     });
+    
+    // Dedicated mouse wheel scrolling function for flavour section (standalone)
+    function setupFlavourScrolling() {
+        const flavourScroll = document.querySelector('.flavour-scroll');
+        if (!flavourScroll) return;
+        
+        // Direct wheel event handler
+        function wheelHandler(e) {
+            // Always prevent default
+            e.preventDefault();
+            
+            // Use a fixed amount per scroll tick
+            flavourScroll.scrollBy({
+                left: e.deltaY > 0 ? 100 : -100,
+                behavior: 'smooth'
+            });
+            
+            return false;
+        }
+        
+        // Use capturing phase to ensure our handler runs first
+        flavourScroll.addEventListener('wheel', wheelHandler, { passive: false, capture: true });
+        
+        // Backup: Add keyboard navigation for accessibility
+        flavourScroll.tabIndex = 0; // Make it focusable
+        flavourScroll.addEventListener('keydown', function(e) {
+            if (e.key === 'ArrowRight') {
+                flavourScroll.scrollBy({ left: 100, behavior: 'smooth' });
+                e.preventDefault();
+            } else if (e.key === 'ArrowLeft') {
+                flavourScroll.scrollBy({ left: -100, behavior: 'smooth' });
+                e.preventDefault();
+            }
+        });
+    }
+    
+    // Call this function after the page has fully loaded
+    window.addEventListener('load', setupFlavourScrolling);
+    
+    // Also call it immediately in case the page is already loaded
+    if (document.readyState === 'complete') {
+        setupFlavourScrolling();
+    }
 });

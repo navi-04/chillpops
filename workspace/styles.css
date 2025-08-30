@@ -858,22 +858,28 @@ body {
     padding: 1rem 0;
     width: calc(100% + 4rem); /* Ensure full width including margins */
     
-    /* Hide scrollbar for all browsers while maintaining scroll functionality */
-    scrollbar-width: none; /* Firefox */
-    -ms-overflow-style: none; /* Internet Explorer and Edge */
+    /* Critical for mouse wheel scrolling */
+    scroll-behavior: smooth;
+    touch-action: pan-x; /* Prevent vertical touch actions and allow only horizontal */
+    
+    /* Hide scrollbar while maintaining functionality */
+    scrollbar-width: none;
+    -ms-overflow-style: none;
 }
 
-/* Hide webkit (Chrome, Safari, Opera) scrollbar */
-.flavour-scroll::-webkit-scrollbar {
-    display: none;
-    height: 0;
+/* Add arrows to indicate scrollability */
+.flavour-section .section-header::after {
+    content: '← Use mouse wheel to scroll horizontally →';
+    display: block;
+    font-size: 0.8rem;
+    color: rgba(255, 255, 255, 0.7);
+    font-style: italic;
+    margin-top: 0.5rem;
 }
 
-/* Remove all other scrollbar styling since it's now hidden */
-.flavour-scroll::-webkit-scrollbar-track,
-.flavour-scroll::-webkit-scrollbar-thumb,
-.flavour-scroll::-webkit-scrollbar-thumb:hover {
-    display: none;
+/* Ensure all parent elements don't trap the wheel event */
+.flavour-section, .flavour-container {
+    overflow: visible;
 }
 
 .flavour-items {
