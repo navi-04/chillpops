@@ -863,6 +863,42 @@ body {
     -ms-overflow-style: none; /* Internet Explorer and Edge */
 }
 
+/* Add custom scrollbar for flavour section on laptop screens */
+@media screen and (min-width: 992px) and (max-width: 1440px) {
+  .flavour-scroll {
+    scrollbar-width: auto; /* For Firefox - changed from thin to auto for larger size */
+    scrollbar-color: rgba(235, 45, 89, 0.7) rgba(255, 255, 255, 0.2); /* For Firefox - increased opacity */
+    -ms-overflow-style: auto; /* For IE and Edge */
+  }
+  
+  /* For Chrome, Safari, and newer Edge */
+  .flavour-scroll::-webkit-scrollbar {
+    display: block;
+    height: 12px; /* Increased from 8px to 12px */
+    width: auto;
+  }
+  
+  .flavour-scroll::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.2);
+    border-radius: 12px;
+    margin: 0 15px; /* Add some margin on the sides */
+    border: 1px solid rgba(255, 255, 255, 0.1);
+  }
+  
+  .flavour-scroll::-webkit-scrollbar-thumb {
+    background: linear-gradient(135deg, #eb2d59 0%, #ff5c84 100%);
+    border-radius: 12px;
+    border: 2px solid rgba(255, 255, 255, 0.3);
+    box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
+    transition: all 0.3s ease;
+  }
+  
+  .flavour-scroll::-webkit-scrollbar-thumb:hover {
+    background: linear-gradient(135deg, #ff5c84 0%, #eb2d59 100%);
+    border: 2px solid rgba(255, 255, 255, 0.5);
+  }
+}
+
 /* Hide webkit (Chrome, Safari, Opera) scrollbar */
 .flavour-scroll::-webkit-scrollbar {
     display: none;
