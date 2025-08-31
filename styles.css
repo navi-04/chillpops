@@ -652,8 +652,8 @@ body {
 }
 
 .location-card {
-    background: white;
-    border-radius: 12px;
+    background: rgb(255, 255, 255);
+    border-radius: 12px ;
     width: 130px;
     height: 130px;
     padding: 1rem 0.5rem;
@@ -736,6 +736,7 @@ body {
     
     .location-icon {
         font-size: 1.6rem;
+        margin-top: 1.5rem;
         margin-bottom: 0.5rem;
     }
 }

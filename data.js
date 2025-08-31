@@ -123,44 +123,34 @@ const contactInfo = {
 // Franchise locations data
 const franchiseLocations = [
     {
-        city: "New York",
-        icon: "🗽",
+        city: "Bangalore",
+        icon: "🌆",
+        count: 2
+    },
+    {
+        city: "Mumbai",
+        icon: "🌉",
+        count: 1
+    },
+    {
+        city: "Karur",
+        icon: "🏙️",
         count: 5
     },
     {
-        city: "San Francisco",
-        icon: "🌉",
-        count: 3
-    },
-    {
-        city: "Chicago",
-        icon: "🏙️",
-        count: 4
-    },
-    {
-        city: "Los Angeles",
+        city: "Coimbatore",
         icon: "🌴",
-        count: 6
+        count: 3
     },
     {
-        city: "Miami",
+        city: "Namakkal",
         icon: "🏝️",
-        count: 3
-    },
-    {
-        city: "Dallas",
-        icon: "🤠",
-        count: 4
-    },
-    {
-        city: "Atlanta",
-        icon: "🍑",
-        count: 3
-    },
-    {
-        city: "Denver",
-        icon: "⛰️",
         count: 2
+    },
+    {
+        city: "Trichy",
+        icon: "🤠",
+        count: 3
     }
 ];
 
