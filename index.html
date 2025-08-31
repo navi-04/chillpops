@@ -105,13 +105,14 @@
                 <p class="section-subtitle">Become part of the refreshing ChillPops family</p>
             </div>
             
-            <div class="about-content">
-                <div class="about-image">
-                    <img src="shop.png">
-                    <div class="about-image-caption">Join our growing family of store owners</div>
-                </div>
-                
-                <div class="about-text">
+            <!-- Move the image to the top -->
+            <div class="about-image full-width">
+                <img src="shop.png">
+                <div class="about-image-caption">Join our growing family of store owners</div>
+            </div>
+            
+            <div class="about-content vertical-layout">
+                <div class="about-text full-width">
                     <h3>Why Franchise With Us?</h3>
                     <p>ChillPops offers a unique opportunity to own a business in the booming artisanal dessert market. Our proven business model, distinctive brand, and devoted customer base create an exciting entrepreneurial journey with strong growth potential.</p>
                     
@@ -142,7 +143,14 @@
                         </div>
                     </div>
                     
-                    <div class="hero-cta" style="margin-top: 2rem;">
+                    <div class="franchise-locations-container">
+                        <h3>Our Growing Network</h3>
+                        <div class="location-showcase">
+                            <!-- Location cards will be populated by JavaScript -->
+                        </div>
+                    </div>
+                    
+                    <div class="hero-cta">
                         <a href="#contact" class="btn btn-primary">Join Now</a>
                     </div>
                 </div>
@@ -281,6 +289,10 @@
         </div>
     </section>
 
-    <script src="script.js"></script>
+    <!-- Update script tags to use modules -->
+<script type="module" src="data.js"></script>
+<script type="module" src="script.js"></script>
+
+
 </body>
 </html>
