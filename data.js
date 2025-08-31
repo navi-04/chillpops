@@ -4,14 +4,14 @@ const flavours = [
         id: 1,
         name: "Strawberry Splash",
         description: "Sweet, juicy strawberries picked at peak ripeness",
-        image: "images/1.jpg",
+        image: "images/1.JPG",
         tags: ["Bestseller", "Vegan"]
     },
     {
         id: 2,
         name: "Mango Tango",
         description: "Tropical mango purée with a hint of lime",
-        image: "images/2.jpg",
+        image: "images/2.JPG",
         tags: ["New", "Gluten-free"]
     },
     {
