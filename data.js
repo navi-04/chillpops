@@ -120,11 +120,56 @@ const contactInfo = {
     ]
 };
 
+// Franchise locations data
+const franchiseLocations = [
+    {
+        city: "New York",
+        icon: "🗽",
+        count: 5
+    },
+    {
+        city: "San Francisco",
+        icon: "🌉",
+        count: 3
+    },
+    {
+        city: "Chicago",
+        icon: "🏙️",
+        count: 4
+    },
+    {
+        city: "Los Angeles",
+        icon: "🌴",
+        count: 6
+    },
+    {
+        city: "Miami",
+        icon: "🏝️",
+        count: 3
+    },
+    {
+        city: "Dallas",
+        icon: "🤠",
+        count: 4
+    },
+    {
+        city: "Atlanta",
+        icon: "🍑",
+        count: 3
+    },
+    {
+        city: "Denver",
+        icon: "⛰️",
+        count: 2
+    }
+];
+
 // Export all data for use in script.js
 export { 
     flavours, 
     aboutFeatures, 
     franchiseFeatures, 
     franchiseStats, 
-    contactInfo 
+    contactInfo,
+    franchiseLocations 
 };

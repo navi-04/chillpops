@@ -1,5 +1,5 @@
 // Import data from data.js
-import { flavours, aboutFeatures, franchiseFeatures, franchiseStats, contactInfo } from './data.js';
+import { flavours, aboutFeatures, franchiseFeatures, franchiseStats, contactInfo, franchiseLocations } from './data.js';
 
 document.addEventListener('DOMContentLoaded', function() {
     const navbar = document.querySelector('.navbar');
@@ -29,6 +29,9 @@ document.addEventListener('DOMContentLoaded', function() {
     
     // Populate contact information
     populateContactInfo();
+    
+    // Populate franchise locations
+    populateFranchiseLocations();
     
     window.addEventListener('scroll', function() {
         // Floating effect on scroll
@@ -337,6 +340,35 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     }
     
+    // Function to populate franchise locations
+    function populateFranchiseLocations() {
+        const locationShowcase = document.querySelector('.location-showcase');
+        if (!locationShowcase) {
+            console.log('Location showcase element not found');
+            return;
+        }
+        
+        console.log('Populating franchise locations');
+        
+        // Clear existing content
+        locationShowcase.innerHTML = '';
+        
+        // Generate HTML for each location
+        franchiseLocations.forEach((location, index) => {
+            const locationCard = document.createElement('div');
+            locationCard.className = 'location-card';
+            locationCard.setAttribute('data-delay', index * 200); // 200ms delay between each card
+            
+            locationCard.innerHTML = `
+                <div class="location-icon">${location.icon}</div>
+                <h4>${location.city}</h4>
+                <p>${location.count} Locations</p>
+            `;
+            
+            locationShowcase.appendChild(locationCard);
+        });
+    }
+
     // Franchise Section Scripts
     document.addEventListener('DOMContentLoaded', function() {
         // Mobile navigation toggle
@@ -376,7 +408,7 @@ document.addEventListener('DOMContentLoaded', function() {
             });
         }
         
-        // Add stats counters to franchise section using data from data.js
+        // Add stats counters to franchise section using data from franchiseStats
         const franchiseSection = document.querySelector('.franchise-section .about-text');
         if (franchiseSection) {
             // Create stats element with data from franchiseStats
@@ -656,4 +688,48 @@ document.addEventListener('DOMContentLoaded', function() {
             }, 1500);
         }
     });
+    
+    // Function to animate the location cards - make sure this is outside any event handlers
+    function animateLocationCards() {
+        const locationCards = document.querySelectorAll('.location-card');
+        
+        if (!locationCards.length) {
+            console.log('No location cards found');
+            return;
+        }
+        
+        console.log('Found ' + locationCards.length + ' location cards');
+        
+        // Make cards visible with a staggered animation
+        locationCards.forEach(card => {
+            const delay = parseInt(card.getAttribute('data-delay') || 0);
+            
+            // Set initial styles directly to ensure they're visible even without animation
+            card.style.opacity = '1';  
+            card.style.transform = 'translateY(0)';
+            
+            // Add animated class with delay for the nice transition effect
+            setTimeout(() => {
+                card.classList.add('animated');
+            }, delay);
+        });
+    }
+
+    // Clean up the document ready handler - replace the duplicate handlers with a single call
+    document.addEventListener('DOMContentLoaded', function() {
+        // ...existing code...
+        
+        // Call animateLocationCards function after a slight delay to ensure DOM is fully loaded
+        setTimeout(animateLocationCards, 500);
+        
+        // Remove this line completely as it references a non-existent function
+        // animateFranchiseMap();
+        
+        // ...existing code...
+    });
 });
+    
+
+    // Initialize franchise map animation
+    animateFranchiseMap();
+
