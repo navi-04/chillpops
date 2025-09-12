@@ -240,7 +240,7 @@ const franchiseStats = [
 
 // Contact information
 const contactInfo = {
-    address: "123 Popsicle, abc City, FC 12345",
+    address: "165/4A1, NH 44, Udhayamoorthi School, Periyapatti, Namakkal, Tamil Nadu, 637001",
     phone: "8608677757",
     email: "chillpopsofficial@gmail.com",
     hours: [
@@ -249,8 +249,9 @@ const contactInfo = {
         { day: "Sunday", time: "11:00 AM - 7:00 PM" }
     ],
     social: [
-        { platform: "Facebook", url: "#" },
-        { platform: "Instagram", url: "#" }
+       
+        { platform: "Call Us", url: "tel:8608677757" },
+        { platform: "Instagram", url: "https://www.instagram.com/chillpops.in?igsh=ZDNodm1tNmNpY2xk" },
     ]
 };
 
