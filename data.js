@@ -286,6 +286,11 @@ const franchiseLocations = [
         city: "Trichy",
         icon: "🤠",
         count: 3
+    },
+    {
+        city: "Andhra Pradesh",
+        icon: "🌄",
+        count: 1
     }
 ];
 
