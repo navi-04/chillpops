@@ -145,18 +145,35 @@
             </div>
         </section>
 
-        <!-- Flavours Section -->
-        <section id="flavour" class="section flavour-section">
+        <!-- Flavours Section: 3-Row Auto Scroll -->
+        <section id="flavour" class="section flavour-section" style="padding: 4rem 0;">
             <div class="container">
-                <div class="section-header text-center gsap-fade-up" style="background:var(--color-blue); color:white; transform:rotate(1deg);">
+                <div class="section-header text-center gsap-fade-up" style="background:var(--color-blue); color:white; transform:rotate(1deg); margin-bottom: 3rem;">
                     <h2>The Menu</h2>
                 </div>
-                
-                <div class="flavour-grid mt-4 gsap-fade-up">
-                    <!-- Javascript will populate .flavour-card items here -->
+            </div>
+            
+            <div class="flavour-marquee-container gsap-fade-up">
+                <!-- Track 1: Scrolls Left -->
+                <div class="flavour-track track-1">
+                    <div class="flavour-items row-1"></div>
+                    <div class="flavour-items row-1" aria-hidden="true"></div>
                 </div>
                 
-                <div class="mt-4 text-center gsap-fade-up">
+                <!-- Track 2: Scrolls Right -->
+                <div class="flavour-track track-2">
+                    <div class="flavour-items row-2"></div>
+                    <div class="flavour-items row-2" aria-hidden="true"></div>
+                </div>
+                
+                <!-- Track 3: Scrolls Left -->
+                <div class="flavour-track track-3">
+                    <div class="flavour-items row-3"></div>
+                    <div class="flavour-items row-3" aria-hidden="true"></div>
+                </div>
+            </div>
+            
+            <div class="container mt-4 text-center gsap-fade-up">
                     <a href="menu.pdf" download="ChillPops-Menu.pdf" class="btn btn-primary" style="font-size:1.25rem; padding:1.25rem 2.5rem;">
                         <i class="ph-bold ph-download-simple"></i>
                         <span>Download Full Menu</span>

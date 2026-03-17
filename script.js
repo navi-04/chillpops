@@ -65,21 +65,37 @@ document.addEventListener('DOMContentLoaded', () => {
         `).join('');
     }
 
-    // Populate Flavours
-    const flavoursContainer = document.querySelector('.flavour-grid');
-    if (flavoursContainer) {
-        flavoursContainer.innerHTML = flavours.map(flavour => `
-            <div class="flavour-card">
-                <div class="flavour-img-box">
-                    <img src="${flavour.image}" alt="${flavour.name}" loading="lazy">
-                </div>
-                <h3>${flavour.name}</h3>
-                <p style="font-weight:500;">${flavour.description}</p>
-                <div class="flavour-tags">
-                    ${flavour.tags.map(tag => `<span class="tag ${tag.toLowerCase() === 'bestseller' ? 'featured' : ''}">${tag}</span>`).join('')}
-                </div>
+    // Populate Flavours into 3 Marquee Rows
+    const row1Containers = document.querySelectorAll('.row-1');
+    const row2Containers = document.querySelectorAll('.row-2');
+    const row3Containers = document.querySelectorAll('.row-3');
+    
+    // We want lots of cards to make the marquee look full, so we will duplicate the flavours array a few times.
+    const extendedFlavours = [...flavours, ...flavours, ...flavours, ...flavours];
+    
+    // Divide roughly evenly
+    const third = Math.ceil(extendedFlavours.length / 3);
+    const set1 = extendedFlavours.slice(0, third);
+    const set2 = extendedFlavours.slice(third, third * 2);
+    const set3 = extendedFlavours.slice(third * 2);
+
+    const buildCardHTML = (flavour) => `
+        <div class="flavour-card">
+            <div class="flavour-img-box">
+                <img src="${flavour.image}" alt="${flavour.name}" loading="lazy">
             </div>
-        `).join('');
+            <h3>${flavour.name}</h3>
+            <p style="font-weight:500;">${flavour.description}</p>
+            <div class="flavour-tags">
+                ${flavour.tags.map(tag => `<span class="tag ${tag.toLowerCase() === 'bestseller' ? 'featured' : ''}">${tag}</span>`).join('')}
+            </div>
+        </div>
+    `;
+
+    if (row1Containers.length) {
+        row1Containers.forEach(container => container.innerHTML = set1.map(buildCardHTML).join(''));
+        row2Containers.forEach(container => container.innerHTML = set2.map(buildCardHTML).join(''));
+        row3Containers.forEach(container => container.innerHTML = set3.map(buildCardHTML).join(''));
     }
 
     // Populate Contact Information
