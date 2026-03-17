@@ -22,41 +22,28 @@ document.addEventListener('DOMContentLoaded', () => {
         });
         
         // Hover effects on links and buttons
-        const interactables = document.querySelectorAll('a, button, .btn');
+        const interactables = document.querySelectorAll('a, button, .btn, .bento-panel, .flavour-card');
         interactables.forEach(el => {
             el.addEventListener('mouseenter', () => {
                 cursorDot.style.transform = 'translate(-50%, -50%) scale(1.5)';
                 cursorGlow.style.transform = 'translate(-50%, -50%) scale(1.5)';
-                cursorGlow.style.background = 'rgba(235, 45, 89, 0.2)';
+                cursorGlow.style.background = 'rgba(255, 42, 95, 0.15)'; // Light theme accent glow
             });
             el.addEventListener('mouseleave', () => {
                 cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
                 cursorGlow.style.transform = 'translate(-50%, -50%) scale(1)';
-                cursorGlow.style.background = 'rgba(235, 45, 89, 0.1)';
+                cursorGlow.style.background = 'rgba(255, 42, 95, 0.05)';
             });
         });
-    }
-
-    // Populate About Features
-    const aboutContainer = document.querySelector('.about-features');
-    if (aboutContainer) {
-        aboutContainer.innerHTML = aboutFeatures.map(feat => `
-            <div class="feature-card">
-                <div class="icon">${feat.icon}</div>
-                <h4>${feat.title}</h4>
-                <p>${feat.description}</p>
-            </div>
-        `).join('');
     }
 
     // Populate Franchise Features
     const franchiseFeatContainer = document.querySelector('.franchise-features-list');
     if (franchiseFeatContainer) {
-        franchiseFeatContainer.innerHTML = franchiseFeatures.map(feat => `
-            <div class="feature-card mt-2">
-                <div class="icon">${feat.icon}</div>
-                <h4>${feat.title}</h4>
-                <p>${feat.description}</p>
+        franchiseFeatContainer.innerHTML = franchiseFeatures.map((feat, i) => `
+            <div class="mt-3">
+                <h4 style="font-size:1.1rem; margin-bottom:0.25rem;">${feat.icon} ${feat.title}</h4>
+                <p class="text-muted" style="font-size:0.95rem;">${feat.description}</p>
             </div>
         `).join('');
     }
@@ -89,13 +76,13 @@ document.addEventListener('DOMContentLoaded', () => {
     if (flavoursContainer) {
         flavoursContainer.innerHTML = flavours.map(flavour => `
             <div class="flavour-card">
-                <img src="${flavour.image}" alt="${flavour.name}" class="flavour-card-img" loading="lazy">
-                <div class="flavour-card-body">
-                    <h3>${flavour.name}</h3>
-                    <p>${flavour.description}</p>
-                    <div class="flavour-tags">
-                        ${flavour.tags.map(tag => `<span class="tag ${tag.toLowerCase() === 'bestseller' ? 'featured' : ''}">${tag}</span>`).join('')}
-                    </div>
+                <div class="flavour-card-img-wrap">
+                    <img src="${flavour.image}" alt="${flavour.name}" class="flavour-card-img" loading="lazy">
+                </div>
+                <h3>${flavour.name}</h3>
+                <p>${flavour.description}</p>
+                <div class="flavour-tags">
+                    ${flavour.tags.map(tag => `<span class="tag ${tag.toLowerCase() === 'bestseller' ? 'featured' : ''}">${tag}</span>`).join('')}
                 </div>
             </div>
         `).join('');
@@ -108,18 +95,21 @@ document.addEventListener('DOMContentLoaded', () => {
     const socialLinks = document.querySelector('.social-links');
 
     if (addressEl) addressEl.innerHTML = contactInfo.address;
-    if (phonesEl) phonesEl.innerHTML = `<a href="tel:${contactInfo.phone}" class="text-accent fs-5 fw-bold">${contactInfo.phone}</a><br/><a href="mailto:${contactInfo.email}">${contactInfo.email}</a>`;
+    if (phonesEl) phonesEl.innerHTML = `<a href="tel:${contactInfo.phone}" style="color:white; font-size:1.25rem; font-weight:700;">${contactInfo.phone}</a><br/><a href="mailto:${contactInfo.email}" style="color:rgba(255,255,255,0.8);">${contactInfo.email}</a>`;
     
     if (hoursList) {
         hoursList.innerHTML = contactInfo.hours.map(hour => `
-            <li class="mb-1"><strong class="text-primary">${hour.day}:</strong> ${hour.time}</li>
+            <li class="hour-item">
+                <strong>${hour.day}</strong> 
+                <span>${hour.time}</span>
+            </li>
         `).join('');
     }
 
     if (socialLinks) {
         socialLinks.innerHTML = contactInfo.social.map(social => `
             <a href="${social.url}" class="social-link" target="_blank" rel="noopener noreferrer" title="${social.platform}">
-                <i class="ph-fill ${social.platform.toLowerCase().includes('instagram') ? 'ph-instagram-logo' : 'ph-phone'}"></i>
+                <i class="${social.platform.toLowerCase().includes('instagram') ? 'ph-fill ph-instagram-logo' : 'ph-fill ph-phone'}"></i>
             </a>
         `).join('');
     }
@@ -166,18 +156,17 @@ document.addEventListener('DOMContentLoaded', () => {
     const heroTl = gsap.timeline();
     heroTl.fromTo('.gsap-hero-reveal', 
         { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1, stagger: 0.15, ease: 'power3.out', delay: 0.2 }
+        { y: 0, opacity: 1, duration: 1.2, stagger: 0.15, ease: 'power3.out', delay: 0.2 }
     );
     heroTl.fromTo('.gsap-nav-item',
         { y: -20, opacity: 0 },
         { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: 'power2.out' },
-        '-=0.8'
+        '-=1'
     );
 
-    // Fade Up Elements on Scroll
-    const fadeUpElements = document.querySelectorAll('.gsap-fade-up');
+    // Fade Up Elements on Scroll (Including Bento Grids)
+    const fadeUpElements = document.querySelectorAll('.gsap-fade-up, .bento-panel');
     fadeUpElements.forEach(el => {
-        const delay = el.getAttribute('data-delay') || 0;
         gsap.fromTo(el, 
             { y: 60, opacity: 0 },
             { 
@@ -185,7 +174,6 @@ document.addEventListener('DOMContentLoaded', () => {
                 opacity: 1, 
                 duration: 1, 
                 ease: 'power3.out',
-                delay: Number(delay),
                 scrollTrigger: {
                     trigger: el,
                     start: 'top 85%',
@@ -198,9 +186,11 @@ document.addEventListener('DOMContentLoaded', () => {
     // Parallax Images
     const parallaxImages = document.querySelectorAll('.parallax-img');
     parallaxImages.forEach(img => {
-        const wrap = img.closest('.parallax-img-wrap');
+        const wrap = img.closest('.parallax-img-wrap') || img.parentElement;
+        const speed = img.getAttribute('data-speed') || 0.15;
+        
         gsap.to(img, {
-            yPercent: 15,
+            y: () => window.innerHeight * speed,
             ease: 'none',
             scrollTrigger: {
                 trigger: wrap,
@@ -217,7 +207,7 @@ document.addEventListener('DOMContentLoaded', () => {
         const target = Number(stat.getAttribute('data-count'));
         gsap.to(stat, {
             innerHTML: target,
-            duration: 2,
+            duration: 2.5,
             ease: 'power2.out',
             snap: { innerHTML: 1 },
             scrollTrigger: {
