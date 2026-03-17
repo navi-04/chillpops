@@ -3,47 +3,46 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>ChillPops | Premium Artisanal Popsicles</title>
-    <!-- Modern Typography -->
+    <title>Ch!llPops | Vibrant Artisanal Joy</title>
+    <!-- Neobrutalist Typography -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@300;400;500;600;700;800;900&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@400;600;700&family=DM+Sans:wght@400;500;700&display=swap" rel="stylesheet">
     <!-- Main Styles -->
     <link rel="stylesheet" href="styles.css">
-    <!-- Phosphor Icons for premium look -->
+    <!-- Phosphor Icons -->
     <script src="https://unpkg.com/@phosphor-icons/web"></script>
 </head>
 <body>
-    <!-- Custom Cursor -->
+    <!-- Custom Playful Cursor -->
     <div class="cursor-dot"></div>
-    <div class="cursor-glow"></div>
 
     <!-- Navigation -->
     <nav class="navbar" id="navbar">
         <div class="navbar-container">
             <div class="navbar-brand">
-                <a href="#hero" class="brand-link gsap-nav-item">Ch!ll<span>Pops</span></a>
+                <a href="#hero" class="brand-link gsap-nav-item">Ch!llPops</a>
             </div>
             <ul class="navbar-nav">
-                <li class="nav-item gsap-nav-item"><a href="#about" class="nav-link">Story</a></li>
-                <li class="nav-item gsap-nav-item"><a href="#flavour" class="nav-link">Flavours</a></li>
+                <li class="nav-item gsap-nav-item"><a href="#about" class="nav-link">About Us</a></li>
+                <li class="nav-item gsap-nav-item"><a href="#flavour" class="nav-link">The Menu</a></li>
                 <li class="nav-item gsap-nav-item"><a href="#franchise" class="nav-link">Franchise</a></li>
                 <li class="nav-item gsap-nav-item"><a href="#contact" class="nav-link">Contact</a></li>
             </ul>
             <div class="navbar-cta gsap-nav-item">
                 <a href="#flavour" class="btn btn-primary">
-                    <i class="ph ph-shopping-cart"></i> Order Now
+                    <i class="ph-bold ph-shopping-bag"></i> Get Pops
                 </a>
             </div>
-            <div class="navbar-toggle gsap-nav-item" aria-label="Toggle navigation menu">
-                <i class="ph ph-list"></i>
+            <div class="navbar-toggle gsap-nav-item" aria-label="Toggle menu">
+                <i class="ph-bold ph-list"></i>
             </div>
         </div>
         <!-- Mobile Menu -->
         <div class="mobile-menu">
             <ul class="mobile-nav">
-                <li><a href="#about" class="mobile-link">Story</a></li>
-                <li><a href="#flavour" class="mobile-link">Flavours</a></li>
+                <li><a href="#about" class="mobile-link">About Us</a></li>
+                <li><a href="#flavour" class="mobile-link">The Menu</a></li>
                 <li><a href="#franchise" class="mobile-link">Franchise</a></li>
                 <li><a href="#contact" class="mobile-link">Contact</a></li>
             </ul>
@@ -51,42 +50,40 @@
     </nav>
 
     <main class="smooth-scroll-wrapper">
-        <!-- Hero Section - Bento Style -->
+        <!-- Hero Section -->
         <section id="hero" class="hero-section">
             <div class="container hero-grid">
-                <div class="hero-content">
-                    <div class="hero-badge gsap-hero-reveal">
-                        <i class="ph-fill ph-leaf text-accent"></i> 100% All Natural
+                <div class="hero-content gsap-hero-reveal">
+                    <div class="hero-badge">
+                        <i class="ph-bold ph-star"></i> 100% Real Fruit
                     </div>
-                    <h1 class="hero-title gsap-hero-reveal">Taste the <br/><span class="text-gradient">Future</span> of Joy</h1>
-                    <p class="hero-description gsap-hero-reveal">Artisanal popsicles crafted with real fruit, zero artificial flavors, and pure aesthetic perfection. Redefining your chilling experience.</p>
-                    <div class="hero-cta gsap-hero-reveal">
+                    <h1 class="hero-title">
+                        Unapologetic<br/>
+                        <span class="text-stroke">Flavor.</span>
+                    </h1>
+                    <p class="hero-description">
+                        No artificial junk. Just big, bold, vibrant popsicles crafted to smack your taste buds with pure artisanal joy.
+                    </p>
+                    <div class="hero-cta">
                         <a href="#flavour" class="btn btn-primary">
-                            <span>Explore Flavours</span>
-                            <i class="ph ph-arrow-right"></i>
+                            <span>Browse Flavours</span>
+                            <i class="ph-bold ph-arrow-right"></i>
                         </a>
                         <a href="#about" class="btn btn-outline">Our Story</a>
                     </div>
                 </div>
                 
                 <div class="hero-visual gsap-hero-reveal">
-                    <div class="hero-bento-1 parallax-img">
-                        <!-- Reusing the video, but bounded in a premium bento card -->
+                    <div class="hero-video-wrap">
                         <video autoplay muted loop playsinline preload="auto">
                             <source src="vedios/herobg4.webm" type="video/webm">
                             <source src="vedios/herobg4.mp4" type="video/mp4">
                         </video>
                     </div>
-                    <div class="hero-bento-2 parallax-img" data-speed="0.2">
+                    <div class="hero-img-wrap">
                         <img src="popsicle.jpg" alt="Strawberry Popsicle">
                     </div>
                 </div>
-            </div>
-            
-            <!-- Scroll Indicator -->
-            <div class="scroll-indicator-wrap gsap-hero-reveal">
-                <div class="mouse"><div class="wheel"></div></div>
-                <span class="scroll-text">Scroll Down</span>
             </div>
         </section>
 
@@ -94,128 +91,110 @@
         <div class="marquee-section">
             <div class="marquee-track">
                 <div class="marquee-content">
-                    <span>100% NATURAL</span> <i class="ph-fill ph-star"></i>
-                    <span>HANDCRAFTED</span> <i class="ph-fill ph-star"></i>
-                    <span>REAL FRUIT</span> <i class="ph-fill ph-star"></i>
-                    <span>ECO-FRIENDLY</span> <i class="ph-fill ph-star"></i>
-                    <span>PREMIUM INGREDIENTS</span> <i class="ph-fill ph-star"></i>
-                    <span>NO PRESERVATIVES</span> <i class="ph-fill ph-star"></i>
+                    <span>Handcrafted</span> <i class="ph-fill ph-asterisk"></i>
+                    <span>Real Fruit</span> <i class="ph-fill ph-asterisk"></i>
+                    <span>Zero Preservatives</span> <i class="ph-fill ph-asterisk"></i>
+                    <span>Vegan Options</span> <i class="ph-fill ph-asterisk"></i>
+                    <span>Bold Flavors</span> <i class="ph-fill ph-asterisk"></i>
                 </div>
+                <!-- Duplicate for seamless loop -->
                 <div class="marquee-content" aria-hidden="true">
-                    <span>100% NATURAL</span> <i class="ph-fill ph-star"></i>
-                    <span>HANDCRAFTED</span> <i class="ph-fill ph-star"></i>
-                    <span>REAL FRUIT</span> <i class="ph-fill ph-star"></i>
-                    <span>ECO-FRIENDLY</span> <i class="ph-fill ph-star"></i>
-                    <span>PREMIUM INGREDIENTS</span> <i class="ph-fill ph-star"></i>
-                    <span>NO PRESERVATIVES</span> <i class="ph-fill ph-star"></i>
+                    <span>Handcrafted</span> <i class="ph-fill ph-asterisk"></i>
+                    <span>Real Fruit</span> <i class="ph-fill ph-asterisk"></i>
+                    <span>Zero Preservatives</span> <i class="ph-fill ph-asterisk"></i>
+                    <span>Vegan Options</span> <i class="ph-fill ph-asterisk"></i>
+                    <span>Bold Flavors</span> <i class="ph-fill ph-asterisk"></i>
                 </div>
             </div>
         </div>
 
-        <!-- About Section - Bento Box -->
+        <!-- About Section -->
         <section id="about" class="section">
             <div class="container">
-                <div class="section-header text-center gsap-fade-up">
-                    <div class="section-label">The Origin</div>
-                    <h2>Redefining <span class="text-gradient">Cool</span></h2>
-                    <p class="section-subtitle">Our journey from farm to freezer, perfected.</p>
+                <div class="section-header gsap-fade-up">
+                    <h2>The <br/>Origin</h2>
                 </div>
+                <div class="section-subtitle gsap-fade-up">From farm to freezer, perfected.</div>
                 
-                <div class="about-bento-grid gsap-fade-up">
-                    <div class="bento-panel bento-item-1">
-                        <div class="bento-icon"><i class="ph-fill ph-plant"></i></div>
-                        <h3>Our Story</h3>
-                        <p class="text-muted">Founded in 2018, ChillPops began with a simple idea: create the most delicious, all-natural popsicles using only the finest ingredients. What started as a small cart in local farmers' markets has grown into a beloved premium dessert brand across the country.</p>
-                        
-                        <div class="mt-2">
-                            <h4 class="text-accent mt-3">The ChillPops Promise</h4>
-                            <p class="text-muted">Every ChillPop is handcrafted in distinct, small batches using fresh, locally-sourced fruits and premium ingredients. We never use artificial flavors, colors, or preservatives – just pure, natural goodness wrapped in a frosty, premium experience.</p>
+                <div class="about-grid mt-4">
+                    <div class="about-img-wrap gsap-fade-up">
+                        <img src="about.jpg" alt="About ChillPops">
+                    </div>
+                    
+                    <div class="about-content">
+                        <div class="about-bento gsap-fade-up">
+                            <div class="about-card st-col-2">
+                                <h3>Our Story</h3>
+                                <p style="font-family:var(--font-heading); font-size:1.25rem;">Founded in 2018, ChillPops began with a simple idea: craft the most delicious, unapologetic popsicles using only the finest ingredients. What started as a small cart in local farmers' markets is now a cult-favorite brand.</p>
+                            </div>
+                            
+                            <div class="about-card bg-pink" style="color:white; transform:rotate(-2deg);">
+                                <div class="about-icon"><i class="ph-bold ph-plant"></i></div>
+                                <h4>100% Natural</h4>
+                                <p>Only real fruits and ingredients you can actually pronounce.</p>
+                            </div>
+                            
+                            <div class="about-card bg-yellow text-dark" style="color:var(--color-dark); transform:rotate(2deg);">
+                                <div class="about-icon"><i class="ph-bold ph-sparkle"></i></div>
+                                <h4>Artisanal</h4>
+                                <p>Handcrafted in small batches for perfect flavor and texture.</p>
+                            </div>
                         </div>
-                    </div>
-                    
-                    <div class="bento-panel bento-item-2 parallax-img-wrap">
-                        <img src="about.jpg" alt="About ChillPops" class="parallax-img">
-                    </div>
-                    
-                    <!-- JS populate these dynamically or keep static -->
-                    <div class="bento-panel bento-item-3">
-                        <div class="bento-icon"><i class="ph-fill ph-leaf"></i></div>
-                        <h4>100% Natural</h4>
-                        <p class="text-muted text-sm">Only real fruits and ingredients you can actually pronounce.</p>
-                    </div>
-                    
-                    <div class="bento-panel bento-item-4">
-                        <div class="bento-icon"><i class="ph-fill ph-sparkle"></i></div>
-                        <h4>Artisanal</h4>
-                        <p class="text-muted text-sm">Handcrafted in small batches for perfect flavor and texture.</p>
                     </div>
                 </div>
             </div>
         </section>
 
-        <!-- Flavours Section - Editorial Grid -->
+        <!-- Flavours Section -->
         <section id="flavour" class="section flavour-section">
             <div class="container">
-                <div class="section-header gsap-fade-up">
-                    <div class="section-label">The Menu</div>
-                    <h2>Signature <span class="text-gradient">Flavours</span></h2>
-                    <p class="section-subtitle">Exquisite combinations, bold premium tastes.</p>
+                <div class="section-header text-center gsap-fade-up" style="background:var(--color-blue); color:white; transform:rotate(1deg);">
+                    <h2>The Menu</h2>
                 </div>
-            </div>
-            
-            <div class="flavour-carousel-wrapper gsap-fade-up">
-                <!-- Javascript will populate .flavour-items here -->
-                <div class="flavour-items"></div>
-            </div>
-            
-            <div class="container mt-4 text-center gsap-fade-up">
-                <a href="menu.pdf" download="ChillPops-Menu.pdf" class="btn btn-secondary">
-                    <i class="ph ph-download-simple"></i>
-                    <span>Download Full Menu</span>
-                </a>
+                
+                <div class="flavour-grid mt-4 gsap-fade-up">
+                    <!-- Javascript will populate .flavour-card items here -->
+                </div>
+                
+                <div class="mt-4 text-center gsap-fade-up">
+                    <a href="menu.pdf" download="ChillPops-Menu.pdf" class="btn btn-primary" style="font-size:1.25rem; padding:1.25rem 2.5rem;">
+                        <i class="ph-bold ph-download-simple"></i>
+                        <span>Download Full Menu</span>
+                    </a>
+                </div>
             </div>
         </section>
 
         <!-- Franchise Section -->
         <section id="franchise" class="section">
             <div class="container">
-                <div class="section-header text-center gsap-fade-up">
-                    <div class="section-label">Expansion</div>
-                    <h2>Join Our <span class="text-gradient">Empire</span></h2>
-                    <p class="section-subtitle">Become a partner in the refreshing ChillPops family.</p>
-                </div>
-                
-                <div class="franchise-hero-image gsap-fade-up parallax-img-wrap">
-                    <img src="shop.png" alt="Franchise Storefront" class="parallax-img" data-speed="0.1">
-                    <div class="glass-overlay-stats">
-                        <div class="franchise-stats-container">
-                            <!-- Populated by JS franchiseStats -->
-                        </div>
+                <div class="franchise-banner gsap-fade-up">
+                    <h2 class="text-stroke" style="-webkit-text-stroke: 2px white; color:transparent; font-size:4rem;">Join The Empire</h2>
+                    <p style="font-family:var(--font-heading); font-size:1.5rem; margin-top:1rem;">Become a partner in the refreshing ChillPops family.</p>
+                    
+                    <div class="franchise-stats-container">
+                        <!-- Populated by JS -->
                     </div>
                 </div>
                 
-                <div class="franchise-content-grid mt-4">
-                    <div class="bento-panel gsap-fade-up">
-                        <div class="bento-icon"><i class="ph-fill ph-rocket-launch"></i></div>
-                        <h3 class="gradient-text">Why Franchise With Us?</h3>
-                        <p class="text-muted mb-3">ChillPops offers a unique opportunity to own a business in the booming artisanal dessert market. Our proven business model, distinctive brand, and devoted customer base create an exciting entrepreneurial journey.</p>
+                <div class="about-grid">
+                    <div class="brutal-card gsap-fade-up">
+                        <div class="about-icon"><i class="ph-bold ph-rocket-launch"></i></div>
+                        <h3 class="mb-2">Why Franchise With Us?</h3>
+                        <p>ChillPops offers a unique opportunity to own a business in the booming dessert market. Our proven model, distinctive vibrant brand, and devoted customer base create an exciting entrepreneurial journey.</p>
                         
-                        <div class="franchise-features-list">
+                        <div class="franchise-features-list mt-3">
                             <!-- Populated by JS -->
                         </div>
                         
-                        <div class="mt-4">
-                            <a href="#contact" class="btn btn-primary">
-                                <span>Inquire Now</span>
-                                <i class="ph ph-arrow-right"></i>
-                            </a>
-                        </div>
+                        <a href="#contact" class="btn btn-secondary mt-3">
+                            Join Us <i class="ph-bold ph-arrow-right"></i>
+                        </a>
                     </div>
                     
-                    <div class="bento-panel gsap-fade-up">
-                        <div class="bento-icon"><i class="ph-fill ph-map-pin"></i></div>
-                        <h3 class="gradient-text">Growing Network</h3>
-                        <div class="location-showcase mt-3">
+                    <div class="gsap-fade-up">
+                        <h3 class="mb-2 text-center" style="background:var(--color-mint); display:inline-block; padding:0.5rem 1rem; border:var(--border-thick); box-shadow:3px 3px 0px var(--color-dark); transform:rotate(-2deg);">Growing Network</h3>
+                        <div class="location-grid mt-3">
                             <!-- Populated by JS -->
                         </div>
                     </div>
@@ -226,26 +205,25 @@
         <!-- Contact Section -->
         <section id="contact" class="section contact-section">
             <div class="container">
-                <div class="section-header gsap-fade-up">
-                    <div class="section-label">Get In Touch</div>
-                    <h2>Drop Us A <span class="text-gradient">Line</span></h2>
+                <div class="section-header text-center gsap-fade-up" style="background:var(--color-yellow); color:var(--color-dark);">
+                    <h2>Holla At Us</h2>
                 </div>
                 
-                <div class="contact-grid">
+                <div class="about-grid mt-4">
                     <div class="contact-bento-info gsap-fade-up">
                         <div class="contact-group">
-                            <h4><i class="ph-fill ph-map-pin contact-icon"></i> Address</h4>
-                            <p class="contact-address text-muted"></p>
+                            <h4><i class="ph-bold ph-map-pin"></i> HQ Address</h4>
+                            <p class="contact-address" style="font-family:var(--font-heading); font-size:1.25rem;"></p>
                         </div>
                         
-                        <div class="contact-group mt-3">
-                            <h4><i class="ph-fill ph-phone contact-icon"></i> Reach Out</h4>
-                            <div class="contact-phones text-muted"></div>
+                        <div class="contact-group">
+                            <h4><i class="ph-bold ph-phone"></i> Reach Out</h4>
+                            <div class="contact-phones" style="font-family:var(--font-heading); font-size:1.25rem;"></div>
                         </div>
                         
-                        <div class="contact-group mt-4">
-                            <h4><i class="ph-fill ph-clock contact-icon"></i> Business Hours</h4>
-                            <ul class="hours-list text-muted mt-2"></ul>
+                        <div class="contact-group" style="border:none;">
+                            <h4><i class="ph-bold ph-clock"></i> Hours</h4>
+                            <ul class="hours-list" style="font-family:var(--font-body); font-weight:700;"></ul>
                         </div>
                         
                         <div class="social-links mt-4">
@@ -253,15 +231,15 @@
                         </div>
                     </div>
                     
-                    <div class="contact-form-bento gsap-fade-up">
+                    <div class="brutal-card gsap-fade-up" style="transform:rotate(1deg); background:var(--color-mint);">
                         <h3 class="mb-3">Send a Message</h3>
-                        <p class="text-muted mb-3">Interested in wholesale, franchising, or just want to tell us how much you love our popsicles? Fill out the form below.</p>
-                        <!-- A mockup form to complete the premium look -->
+                        <p class="mb-3">Interested in wholesale, franchising, or just want to tell us how much you love our pop? Drop a line.</p>
+                        
                         <div style="display:flex; flex-direction:column; gap:1.5rem;">
-                            <input type="text" placeholder="Your Name" style="padding:1rem; border-radius:12px; border:1px solid #ddd; font-family:inherit; font-size:1rem; outline:none;" />
-                            <input type="email" placeholder="Your Email" style="padding:1rem; border-radius:12px; border:1px solid #ddd; font-family:inherit; font-size:1rem; outline:none;" />
-                            <textarea placeholder="Your Message" rows="5" style="padding:1rem; border-radius:12px; border:1px solid #ddd; font-family:inherit; font-size:1rem; outline:none; resize:vertical;"></textarea>
-                            <button class="btn btn-primary" style="width:100%;">Send Message</button>
+                            <input type="text" class="form-input" placeholder="YOUR NAME" />
+                            <input type="email" class="form-input" placeholder="YOUR EMAIL" />
+                            <textarea class="form-input" placeholder="YOUR MESSAGE" rows="4" style="resize:vertical;"></textarea>
+                            <button class="btn btn-primary" style="width:100%; justify-content:center; padding:1.25rem;">Ship It <i class="ph-bold ph-paper-plane-tilt"></i></button>
                         </div>
                     </div>
                 </div>
@@ -271,13 +249,13 @@
         <!-- Footer -->
         <footer class="footer">
             <div class="container">
-                <div class="footer-content flex-row">
+                <div class="footer-content">
                     <div class="footer-brand">
-                        <span>Ch!llPops</span>
-                        <p class="text-muted mt-1 mb-0" style="font-size:0.9rem; font-weight:normal;">Premium Artisanal Popsicles. All rights reserved &copy; <span id="year">2026</span>.</p>
+                        CH!LLPOPS
+                        <p style="font-size:1rem; font-family:var(--font-body); font-weight:700; text-transform:none; margin-top:0.5rem;">Premium Artisanal Popsicles. &copy; <span id="year">2026</span>.</p>
                     </div>
                     <div class="footer-links">
-                        <a href="#" class="footer-link">Privacy Policy</a>
+                        <a href="#" class="footer-link">Privacy Info</a>
                         <a href="#" class="footer-link">Terms of Service</a>
                     </div>
                 </div>
