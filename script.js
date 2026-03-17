@@ -11,28 +11,22 @@ document.addEventListener('DOMContentLoaded', () => {
 
     // Custom Cursor
     const cursorDot = document.querySelector('.cursor-dot');
-    const cursorGlow = document.querySelector('.cursor-glow');
-
-    if (cursorDot && cursorGlow) {
+    if (cursorDot) {
         window.addEventListener('mousemove', (e) => {
             cursorDot.style.left = `${e.clientX}px`;
             cursorDot.style.top = `${e.clientY}px`;
-            cursorGlow.style.left = `${e.clientX}px`;
-            cursorGlow.style.top = `${e.clientY}px`;
         });
         
         // Hover effects on links and buttons
-        const interactables = document.querySelectorAll('a, button, .btn, .bento-panel, .flavour-card');
+        const interactables = document.querySelectorAll('a, button, .btn, .brutal-card, .flavour-card');
         interactables.forEach(el => {
             el.addEventListener('mouseenter', () => {
-                cursorDot.style.transform = 'translate(-50%, -50%) scale(1.5)';
-                cursorGlow.style.transform = 'translate(-50%, -50%) scale(1.5)';
-                cursorGlow.style.background = 'rgba(255, 42, 95, 0.15)'; // Light theme accent glow
+                cursorDot.style.transform = 'translate(-50%, -50%) scale(2)';
+                cursorDot.style.backgroundColor = 'var(--color-yellow)';
             });
             el.addEventListener('mouseleave', () => {
                 cursorDot.style.transform = 'translate(-50%, -50%) scale(1)';
-                cursorGlow.style.transform = 'translate(-50%, -50%) scale(1)';
-                cursorGlow.style.background = 'rgba(255, 42, 95, 0.05)';
+                cursorDot.style.backgroundColor = 'var(--color-pink)';
             });
         });
     }
@@ -41,9 +35,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const franchiseFeatContainer = document.querySelector('.franchise-features-list');
     if (franchiseFeatContainer) {
         franchiseFeatContainer.innerHTML = franchiseFeatures.map((feat, i) => `
-            <div class="mt-3">
-                <h4 style="font-size:1.1rem; margin-bottom:0.25rem;">${feat.icon} ${feat.title}</h4>
-                <p class="text-muted" style="font-size:0.95rem;">${feat.description}</p>
+            <div class="mt-2" style="border-left: 3px solid var(--color-dark); padding-left:1rem;">
+                <h4 style="font-size:1.1rem; margin-bottom:0.25rem; font-family:var(--font-heading);">${feat.icon} ${feat.title}</h4>
+                <p style="font-size:0.95rem; margin-bottom:0;">${feat.description}</p>
             </div>
         `).join('');
     }
@@ -52,35 +46,35 @@ document.addEventListener('DOMContentLoaded', () => {
     const franchiseStatsContainer = document.querySelector('.franchise-stats-container');
     if (franchiseStatsContainer) {
         franchiseStatsContainer.innerHTML = franchiseStats.map(stat => `
-            <div class="stat-item">
+            <div class="stat-box">
                 <div class="stat-number" data-count="${stat.count}">0</div>
-                <div class="stat-label">${stat.label}</div>
+                <div class="stat-label" style="font-weight:700; text-transform:uppercase;">${stat.label}</div>
             </div>
         `).join('');
     }
 
     // Populate Franchise Locations
-    const locationShowcase = document.querySelector('.location-showcase');
+    const locationShowcase = document.querySelector('.location-grid');
     if (locationShowcase) {
         locationShowcase.innerHTML = franchiseLocations.map(loc => `
             <div class="location-card">
                 <div class="icon">${loc.icon}</div>
                 <h4>${loc.city}</h4>
-                <p>${loc.count} Store${loc.count > 1 ? 's' : ''}</p>
+                <p style="margin:0; font-weight:700; font-size:1rem;">${loc.count} Store${loc.count > 1 ? 's' : ''}</p>
             </div>
         `).join('');
     }
 
     // Populate Flavours
-    const flavoursContainer = document.querySelector('.flavour-items');
+    const flavoursContainer = document.querySelector('.flavour-grid');
     if (flavoursContainer) {
         flavoursContainer.innerHTML = flavours.map(flavour => `
             <div class="flavour-card">
-                <div class="flavour-card-img-wrap">
-                    <img src="${flavour.image}" alt="${flavour.name}" class="flavour-card-img" loading="lazy">
+                <div class="flavour-img-box">
+                    <img src="${flavour.image}" alt="${flavour.name}" loading="lazy">
                 </div>
                 <h3>${flavour.name}</h3>
-                <p>${flavour.description}</p>
+                <p style="font-weight:500;">${flavour.description}</p>
                 <div class="flavour-tags">
                     ${flavour.tags.map(tag => `<span class="tag ${tag.toLowerCase() === 'bestseller' ? 'featured' : ''}">${tag}</span>`).join('')}
                 </div>
@@ -95,12 +89,12 @@ document.addEventListener('DOMContentLoaded', () => {
     const socialLinks = document.querySelector('.social-links');
 
     if (addressEl) addressEl.innerHTML = contactInfo.address;
-    if (phonesEl) phonesEl.innerHTML = `<a href="tel:${contactInfo.phone}" style="color:white; font-size:1.25rem; font-weight:700;">${contactInfo.phone}</a><br/><a href="mailto:${contactInfo.email}" style="color:rgba(255,255,255,0.8);">${contactInfo.email}</a>`;
+    if (phonesEl) phonesEl.innerHTML = `<a href="tel:${contactInfo.phone}" style="color:var(--color-dark);">${contactInfo.phone}</a><br/><a href="mailto:${contactInfo.email}" style="color:var(--color-dark);">${contactInfo.email}</a>`;
     
     if (hoursList) {
         hoursList.innerHTML = contactInfo.hours.map(hour => `
-            <li class="hour-item">
-                <strong>${hour.day}</strong> 
+            <li style="display:flex; justify-content:space-between; border-bottom: 2px solid var(--color-dark); padding: 0.5rem 0;">
+                <span>${hour.day}</span> 
                 <span>${hour.time}</span>
             </li>
         `).join('');
@@ -109,7 +103,7 @@ document.addEventListener('DOMContentLoaded', () => {
     if (socialLinks) {
         socialLinks.innerHTML = contactInfo.social.map(social => `
             <a href="${social.url}" class="social-link" target="_blank" rel="noopener noreferrer" title="${social.platform}">
-                <i class="${social.platform.toLowerCase().includes('instagram') ? 'ph-fill ph-instagram-logo' : 'ph-fill ph-phone'}"></i>
+                <i class="${social.platform.toLowerCase().includes('instagram') ? 'ph-bold ph-instagram-logo' : 'ph-bold ph-phone'}"></i>
             </a>
         `).join('');
     }
@@ -122,9 +116,9 @@ document.addEventListener('DOMContentLoaded', () => {
     const navbar = document.querySelector('.navbar');
     window.addEventListener('scroll', () => {
         if (window.scrollY > 50) {
-            navbar.classList.add('scrolled');
+            navbar.style.padding = '0';
         } else {
-            navbar.classList.remove('scrolled');
+            navbar.style.padding = '0';
         }
     });
 
@@ -137,14 +131,14 @@ document.addEventListener('DOMContentLoaded', () => {
         navToggle.addEventListener('click', () => {
             mobileMenu.classList.toggle('active');
             navToggle.innerHTML = mobileMenu.classList.contains('active') 
-                ? '<i class="ph ph-x"></i>' 
-                : '<i class="ph ph-list"></i>';
+                ? '<i class="ph-bold ph-x"></i>' 
+                : '<i class="ph-bold ph-list"></i>';
         });
 
         mobileLinks.forEach(link => {
             link.addEventListener('click', () => {
                 mobileMenu.classList.remove('active');
-                navToggle.innerHTML = '<i class="ph ph-list"></i>';
+                navToggle.innerHTML = '<i class="ph-bold ph-list"></i>';
             });
         });
     }
@@ -152,53 +146,36 @@ document.addEventListener('DOMContentLoaded', () => {
     // Initialize GSAP
     gsap.registerPlugin(ScrollTrigger);
 
-    // Hero Section Reveal Animation
+    // Hero Section Reveal Animation - Snappy and brutally fast
     const heroTl = gsap.timeline();
     heroTl.fromTo('.gsap-hero-reveal', 
-        { y: 50, opacity: 0 },
-        { y: 0, opacity: 1, duration: 1.2, stagger: 0.15, ease: 'power3.out', delay: 0.2 }
+        { scale: 0.9, opacity: 0, rotation:-5 },
+        { scale: 1, opacity: 1, rotation:0, duration: 0.6, stagger: 0.1, ease: 'back.out(1.7)', delay: 0.1 }
     );
     heroTl.fromTo('.gsap-nav-item',
-        { y: -20, opacity: 0 },
-        { y: 0, opacity: 1, duration: 0.8, stagger: 0.1, ease: 'power2.out' },
-        '-=1'
+        { y: -50, opacity: 0 },
+        { y: 0, opacity: 1, duration: 0.5, stagger: 0.1, ease: 'bounce.out' },
+        '-=0.2'
     );
 
-    // Fade Up Elements on Scroll (Including Bento Grids)
-    const fadeUpElements = document.querySelectorAll('.gsap-fade-up, .bento-panel');
+    // Fade Up Elements on Scroll (Snappy pops for Neobrutalism)
+    const fadeUpElements = document.querySelectorAll('.gsap-fade-up');
     fadeUpElements.forEach(el => {
         gsap.fromTo(el, 
-            { y: 60, opacity: 0 },
+            { y: 100, opacity: 0, scale:0.9 },
             { 
                 y: 0, 
                 opacity: 1, 
-                duration: 1, 
-                ease: 'power3.out',
+                scale: 1,
+                duration: 0.6, 
+                ease: 'back.out(2)',
                 scrollTrigger: {
                     trigger: el,
-                    start: 'top 85%',
+                    start: 'top 90%',
                     toggleActions: 'play none none reverse'
                 }
             }
         );
-    });
-
-    // Parallax Images
-    const parallaxImages = document.querySelectorAll('.parallax-img');
-    parallaxImages.forEach(img => {
-        const wrap = img.closest('.parallax-img-wrap') || img.parentElement;
-        const speed = img.getAttribute('data-speed') || 0.15;
-        
-        gsap.to(img, {
-            y: () => window.innerHeight * speed,
-            ease: 'none',
-            scrollTrigger: {
-                trigger: wrap,
-                start: 'top bottom',
-                end: 'bottom top',
-                scrub: true
-            }
-        });
     });
 
     // Stats Counter Animation
@@ -207,12 +184,12 @@ document.addEventListener('DOMContentLoaded', () => {
         const target = Number(stat.getAttribute('data-count'));
         gsap.to(stat, {
             innerHTML: target,
-            duration: 2.5,
-            ease: 'power2.out',
+            duration: 2,
+            ease: 'power4.out',
             snap: { innerHTML: 1 },
             scrollTrigger: {
                 trigger: stat.parentElement,
-                start: 'top 80%',
+                start: 'top 85%',
                 once: true
             }
         });
