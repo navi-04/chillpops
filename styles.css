@@ -864,6 +864,34 @@ body:hover .cursor-dot { width: 24px; height: 24px; }
   transform: translate(-2px, -2px);
 }
 
+.contact-form-status {
+  min-height: 1.25rem;
+  margin: -0.5rem 0 0;
+  font-family: var(--font-heading);
+  font-size: 0.95rem;
+  font-weight: 700;
+  text-transform: uppercase;
+}
+
+.contact-form-status.is-pending {
+  color: var(--color-blue);
+}
+
+.contact-form-status.is-success {
+  color: var(--color-dark);
+}
+
+.contact-form-status.is-error {
+  color: var(--color-pink);
+}
+
+.btn:disabled {
+  opacity: 0.7;
+  cursor: not-allowed;
+  transform: none;
+  box-shadow: var(--shadow-hard-sm);
+}
+
 .footer {
   border-top: var(--border-thick);
   background: var(--bg-panel);

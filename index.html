@@ -253,13 +253,14 @@
                     <div class="brutal-card gsap-fade-up" style="transform:rotate(1deg); background:var(--color-mint);">
                         <h3 class="mb-3">Send a Message</h3>
                         <p class="mb-3">Interested in wholesale, franchising, or just want to tell us how much you love our pop? Drop a line.</p>
-                        
-                        <div style="display:flex; flex-direction:column; gap:1.5rem;">
-                            <input type="text" class="form-input" placeholder="YOUR NAME" />
-                            <input type="email" class="form-input" placeholder="YOUR EMAIL" />
-                            <textarea class="form-input" placeholder="YOUR MESSAGE" rows="4" style="resize:vertical;"></textarea>
-                            <button class="btn btn-primary" style="width:100%; justify-content:center; padding:1.25rem;">Ship It <i class="ph-bold ph-paper-plane-tilt"></i></button>
-                        </div>
+
+                        <form id="contact-form" class="contact-form" style="display:flex; flex-direction:column; gap:1.5rem;">
+                            <input type="text" class="form-input" name="name" placeholder="YOUR NAME" autocomplete="name" required />
+                            <input type="email" class="form-input" name="email" placeholder="YOUR EMAIL" autocomplete="email" required />
+                            <textarea class="form-input" name="message" placeholder="YOUR MESSAGE" rows="4" style="resize:vertical;" required></textarea>
+                            <p class="contact-form-status" id="contact-form-status" aria-live="polite"></p>
+                            <button type="submit" class="btn btn-primary" style="width:100%; justify-content:center; padding:1.25rem;">Ship It <i class="ph-bold ph-paper-plane-tilt"></i></button>
+                        </form>
                     </div>
                 </div>
             </div>
@@ -274,6 +275,7 @@
                         <p style="font-size:1rem; font-family:var(--font-body); font-weight:700; text-transform:none; margin-top:0.5rem;">Premium Artisanal Popsicles. &copy; <span id="year">2026</span>.</p>
                     </div>
                     <div class="footer-links">
+                        <a href="admin/index.html" class="footer-link">Admin Panel</a>
                         <a href="#" class="footer-link">Privacy Info</a>
                         <a href="#" class="footer-link">Terms of Service</a>
                     </div>
@@ -285,9 +287,10 @@
     <!-- GSAP Core & Plugins -->
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/gsap.min.js"></script>
     <script src="https://cdnjs.cloudflare.com/ajax/libs/gsap/3.12.5/ScrollTrigger.min.js"></script>
+    <!-- EmailJS Browser SDK -->
+    <script src="https://cdn.jsdelivr.net/npm/@emailjs/browser@4/dist/email.min.js"></script>
     
     <!-- Application Scripts -->
-    <script type="module" src="data.js"></script>
     <script type="module" src="script.js"></script>
 </body>
 </html>

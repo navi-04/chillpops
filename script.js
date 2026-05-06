@@ -1,9 +1,27 @@
-import { flavours, aboutFeatures, franchiseFeatures, franchiseStats, contactInfo, franchiseLocations } from './data.js';
+import { getPublicContent } from './content-service.js';
 
-document.addEventListener('DOMContentLoaded', () => {
+const EMAILJS_CONFIG = {
+    serviceId: 'service_ajfh6z8',
+    templateId: 'template_8bjf35g',
+    publicKey: 'X9R7sa5bkpR_Nsyrr'
+};
+
+document.addEventListener('DOMContentLoaded', async () => {
     // ----------------------------------------------------
     // INITIALIZATION & DOM POPULATION
     // ----------------------------------------------------
+    const content = await getPublicContent();
+    const {
+        flavours,
+        franchiseFeatures,
+        franchiseStats,
+        contactInfo,
+        franchiseLocations
+    } = content;
+
+    if (content.warnings.length) {
+        console.warn('ChillPops content fallback warning:', content.warnings);
+    }
     
     // Set Footer Year
     const yearEl = document.getElementById('year');
@@ -122,6 +140,56 @@ document.addEventListener('DOMContentLoaded', () => {
                 <i class="${social.platform.toLowerCase().includes('instagram') ? 'ph-bold ph-instagram-logo' : 'ph-bold ph-phone'}"></i>
             </a>
         `).join('');
+    }
+
+    // Contact Form -> EmailJS
+    const contactForm = document.querySelector('#contact-form');
+    const contactStatus = document.querySelector('#contact-form-status');
+    const submitButton = contactForm?.querySelector('button[type="submit"]');
+
+    if (window.emailjs && typeof window.emailjs.init === 'function') {
+        window.emailjs.init(EMAILJS_CONFIG.publicKey);
+    }
+
+    const setContactStatus = (message, tone = '') => {
+        if (!contactStatus) return;
+        contactStatus.textContent = message;
+        contactStatus.className = `contact-form-status ${tone}`.trim();
+    };
+
+    if (contactForm) {
+        contactForm.addEventListener('submit', async (event) => {
+            event.preventDefault();
+
+            if (!window.emailjs || typeof window.emailjs.send !== 'function') {
+                setContactStatus('Email sending is not available right now.', 'is-error');
+                return;
+            }
+
+            const formData = new FormData(contactForm);
+            const name = String(formData.get('name') || '').trim();
+            const email = String(formData.get('email') || '').trim();
+            const message = String(formData.get('message') || '').trim();
+
+            if (submitButton) submitButton.disabled = true;
+            setContactStatus('Sending your message...', 'is-pending');
+
+            try {
+                await window.emailjs.send(EMAILJS_CONFIG.serviceId, EMAILJS_CONFIG.templateId, {
+                    name,
+                    email,
+                    message,
+                });
+
+                contactForm.reset();
+                setContactStatus('Message sent. We will get back to you soon.', 'is-success');
+            } catch (error) {
+                console.error('EmailJS send failed:', error);
+                setContactStatus('Could not send your message right now. Please try again.', 'is-error');
+            } finally {
+                if (submitButton) submitButton.disabled = false;
+            }
+        });
     }
 
     // ----------------------------------------------------
